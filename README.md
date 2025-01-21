@@ -16,6 +16,10 @@ Jelenlegi forráskódja a készülőben lévő szervernek.
 
 nem tudom
 
+#### 100% hogy elkészül?
+
+nem tudom
+
 #### Kell segítség?
 
 ha találsz benne hibát akkor jelezd
