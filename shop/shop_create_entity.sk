@@ -1,5 +1,6 @@
 function shop_create_entity(p: player, title: text):
 
+	# Shop kinézete
 	spawn block display at location of {_p}:
 
 		set display block data of entity to lectern
@@ -8,6 +9,7 @@ function shop_create_entity(p: player, title: text):
 
 		set {_block_entity} to entity
 
+	# Felirat a Shop felett
 	spawn text display at location of {_block_entity}:
 
 		set display text of entity to "", {_title}, display_name({_p}), ""
@@ -19,6 +21,7 @@ function shop_create_entity(p: player, title: text):
 
 		set {_title_entity} to entity
 
+	# Egy interaction entitás, ezzel tudjuk kezelni a kattintást
 	spawn interaction at {_block_entity}:
 
 		set interaction width of entity to 1.5
@@ -29,8 +32,11 @@ function shop_create_entity(p: player, title: text):
 
 		set {_interaction_entity} to entity
 
-	set display translation of {_title_entity} to vector(0, 2, 0)
+	# Beállítjuk középre a kinézetet
 	set display translation of {_block_entity} to vector(-0.5, 0, -0.5)
 
+	# Interaction entity lovagolja a block entity-t és a title az interaction-t
+	# Azért kell, hogy kapcsolatot hozzunk létre a három entitás között
+	# Fura de így működik XD
 	make {_interaction_entity} ride {_block_entity}
-
+	make {_title_entity} ride {_interaction_entity}

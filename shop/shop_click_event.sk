@@ -9,3 +9,5 @@ on rightclick on interaction:
 		stop
 
 	broadcast "ez %string tag "Shop;Owner" of {_nbt}% shopja"
+	broadcast "%vehicle of clicked entity%"
+	broadcast "%passenger of clicked entity%"
