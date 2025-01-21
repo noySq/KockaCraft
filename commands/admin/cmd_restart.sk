@@ -7,6 +7,14 @@ command /restart [<integer>] [<text>]:
 	permission: restart
 	trigger:
 
+		if arg-1 is not set:
+			send server_feedback("error", "&cNem adtál meg időtartamot!")
+			stop
+
+		if arg-2 is not set:
+			send server_feedback("error", "&cNem adtál meg indokot!")
+			stop		
+
 		if bossbar with id "restartCountDown" is not set:
 
 			set {_bar} to boss bar with id "restartCountDown" with title "&cSzerver újraindítás" with color red with progress 100

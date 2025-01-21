@@ -28,3 +28,6 @@ command /mute [<offline player>] [<timespan>]:
 			send server_feedback("warning", "&6Le lettél némítva!") to arg-1
 			send server_feedback("warning", "&fLejárat: &6%format_timespan(arg-2)%", true) to arg-1
 			send "" to arg-1
+
+on tab complete of "/mute":
+	set tab completions for position 2 to "<időtartam>"

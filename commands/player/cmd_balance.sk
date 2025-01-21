@@ -19,6 +19,4 @@ command /balance [<offlineplayer>]:
 				stop
 			
 			set {_bal} to {egyenleg::%uuid of arg-1%} ? 0
-			# set {_dname} to 
-			
 			send server_feedback("casual", "&%display_name(arg-1)% &fegyenlege: %format_balance({_bal})%")
