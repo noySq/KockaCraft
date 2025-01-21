@@ -1,0 +1,5 @@
+function shop_gui(p: player, owner: offlineplayer, page: integer):
+
+	set {_gui} to chest inventory with 6 rows named "%display_name({_owner})% &8boltja"
+
+	open {_gui} to {_p}

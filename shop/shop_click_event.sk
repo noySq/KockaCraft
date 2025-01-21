@@ -1,13 +1,11 @@
 on rightclick on interaction:
 
 	set {_nbt} to compound tag "custom" of nbt compound of clicked entity
-
 	if {_nbt} is not set:
 		stop
 
-	if string tag "Shop;Owner" of {_nbt} is not set:
+	set {_shop::owner} to (string tag "Shop;Owner" of {_nbt} parsed as offlineplayer)
+	if {_shop::owner} is not set:
 		stop
 
-	broadcast "ez %string tag "Shop;Owner" of {_nbt}% shopja"
-	broadcast "%vehicle of clicked entity%"
-	broadcast "%passenger of clicked entity%"
+	shop_gui(player, {_shop::owner}, 1)
