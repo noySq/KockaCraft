@@ -1,5 +1,4 @@
 on death of mob with priority highest:
-
 	if event is cancelled:
 		stop
 
@@ -9,7 +8,6 @@ on death of mob with priority highest:
 	give_money_and_feedback(attacker, eye of victim, 1 second)
 
 on break with priority highest:
-
 	if event is cancelled:
 		stop
 		
