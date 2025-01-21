@@ -1,0 +1,36 @@
+function shop_create_entity(p: player, title: text):
+
+	spawn block display at location of {_p}:
+
+		set display block data of entity to lectern
+		set display view range of entity to 0.5
+		set pitch of entity to 0
+
+		set {_block_entity} to entity
+
+	spawn text display at location of {_block_entity}:
+
+		set display text of entity to "", {_title}, display_name({_p}), ""
+		set display billboard of entity to vertical
+		set display text alignment of entity to center aligned
+		set display text shadowed of entity to true
+		set display view range of entity to 0.5
+		set display scale of entity to vector(1.5, 1.5, 1.5)
+
+		set {_title_entity} to entity
+
+	spawn interaction at {_block_entity}:
+
+		set interaction width of entity to 1.5
+		set interaction height of entity to 1.5
+
+		set {_nbt} to compound tag "custom" of nbt compound of entity
+		set string tag "Shop;Owner" of {_nbt} to "%{_p}%"
+
+		set {_interaction_entity} to entity
+
+	set display translation of {_title_entity} to vector(0, 2, 0)
+	set display translation of {_block_entity} to vector(-0.5, 0, -0.5)
+
+	make {_interaction_entity} ride {_block_entity}
+

@@ -1,0 +1,11 @@
+on rightclick on interaction:
+
+	set {_nbt} to compound tag "custom" of nbt compound of clicked entity
+
+	if {_nbt} is not set:
+		stop
+
+	if string tag "Shop;Owner" of {_nbt} is not set:
+		stop
+
+	broadcast "ez %string tag "Shop;Owner" of {_nbt}% shopja"
