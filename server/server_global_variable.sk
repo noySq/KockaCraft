@@ -11,3 +11,6 @@ on load:
 
 	set {global::color::main} to "<#00aeff>"
 	set {global::color::player} to "&7"
+
+	set {global::home::default} to 5
+	set {global::home::premium} to 10

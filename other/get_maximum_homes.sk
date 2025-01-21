@@ -1,5 +1,7 @@
 function get_maximum_homes(p: player) :: integer:
+
 	if {_p} has permission "home.tobb":
-		return 10
+		return {global::home::default}
+
 	else:
-		return 5
+		return {global::home::premium}
