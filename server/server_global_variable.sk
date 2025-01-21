@@ -7,6 +7,7 @@ on load:
 
 	set {global::economy::min} to 5
 	set {global::economy::max} to 30
+	set {global::economy::chance} to 100
 
 	set {global::color::main} to "<#00aeff>"
 	set {global::color::player} to "&7"

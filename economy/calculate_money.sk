@@ -1,13 +1,10 @@
-options:
-	chance-to-get-money: 100%
-
 function calculate_money(p: player, obj: object) :: number:
 
 	set {_nbt} to nbt compound of {_obj}
 
 	if byte tag "dupe" of {_nbt} is not set:
 
-		if chance of {@chance-to-get-money}:
+		if chance of {global::economy::chance}:
 			set {_random_money} to random number between {global::economy::min} and {global::economy::max}
 
 	return {_random_money}
