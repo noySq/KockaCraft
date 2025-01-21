@@ -1,0 +1,9 @@
+on chat with priority highest:
+
+	if {mute::%uuid of player%} is set:
+		cancel event
+
+		set {_mute_date} to unix date of {mute::%uuid of player%}
+		set {_timespan} to difference between now and {_mute_date}
+
+		send server_feedback("error", "&cCsak &4%format_timespan({_timespan})% &cmúlva írhatsz a chatre!")

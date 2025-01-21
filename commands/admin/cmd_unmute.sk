@@ -1,0 +1,25 @@
+command /unmute [<offline player>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/unmute &a<játékos>
+	description: Játékos lenémításának levétele
+	permission: mute
+	trigger:
+
+		if arg-1 is not online:
+			send server_feedback("error", "&4%arg-1% &cnem elérhető!")
+			stop
+			
+		if {mute::%uuid of arg-1%} is not set:
+			send server_feedback("error", "&4%arg-1% &cnincs lenémítva!")
+			stop
+
+		delete {mute::%uuid of arg-1%}
+
+		server_log("mute", "%display_name(player)% &ffeloldotta %display_name(arg-1)% &fnémítását!")
+
+		send "" to arg-1
+		send server_feedback("casual", "ßA némításod fel lett oldva!") to arg-1
+		send server_feedback("casual", "&fMost már újra írhatsz a chatre!", true) to arg-1
+		send "" to arg-1

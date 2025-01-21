@@ -1,0 +1,54 @@
+options:
+
+	log_permission: "log"
+
+	admin: &c&lADMIN
+
+	rank: &3&lRANG
+	protection: &4&lVÉDELEM
+	cmdspy: &2&lCMDSPY
+	crash: &9&lCRASH
+	mute: &6&lMUTE
+	afk: &5&lAFK
+	helpop: &e&lHELPOP
+	world: &7&lWORLD
+
+function server_log(type: text, message: text):
+
+	replace every "ß" in {_message} with {global::color::main}
+
+	if {_type} = "admin":
+		set {_final_msg} to "{@admin} &8| %{_message}%"
+
+	if {_type} = "rank":
+		set {_final_msg} to "{@rank} &8| %{_message}%"
+
+	if {_type} = "protection":
+		set {_final_msg} to "{@protection} &8| %{_message}%"
+
+	if {_type} = "cmdspy":
+		set {_final_msg} to "{@cmdspy} &8| %{_message}%"
+
+	if {_type} = "crash":
+		set {_final_msg} to "{@crash} &8| %{_message}%"
+
+	if {_type} = "mute":
+		set {_final_msg} to "{@mute} &8| %{_message}%"
+
+	if {_type} = "afk":
+		set {_final_msg} to "{@afk} &8| %{_message}%"
+
+	if {_type} = "helpop":
+		set {_final_msg} to "{@helpop} &8| %{_message}%"
+		
+	if {_type} = "world":
+		set {_final_msg} to "{@world} &8| %{_message}%"
+
+	add console to {_send_to::*}
+
+	loop all players:
+
+		loop-player has permission {@log_permission}
+		add loop-player to {_send_to::*}
+
+		send {_final_msg} to {_send_to::*}

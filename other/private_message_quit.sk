@@ -1,0 +1,2 @@
+on quit:
+	delete (metadata "reply" of player)

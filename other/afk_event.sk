@@ -1,0 +1,21 @@
+import:
+	org.purpurmc.purpur.event.PlayerAFKEvent
+
+on PlayerAFKEvent:
+
+	event.setBroadcastMsg("")
+	set {_p} to event.getPlayer()
+
+	if event.isGoingAfk() = true:
+
+		set {_p}'s tablist name to "%display_name({_p})% &7&l[AFK]"
+
+		send server_feedback("casual", "ßAFK &fállapotba kerültél!") to {_p}
+		server_log("afk", "%display_name({_p})% &7elment a géptől!")
+
+	else if event.isGoingAfk() = false:
+
+		tablist_name({_p})
+
+		send server_feedback("casual", "ßAFK &fállapot eltüntetve!") to {_p}
+		server_log("afk", "%display_name({_p})% &7visszatért!")

@@ -1,0 +1,25 @@
+function ranks_delete(p: player, rank: text):
+
+	# Ha nem létezik a rang, cancel
+	if {ranks::%{_rank}%::name} is not set:
+		send server_feedback("error", "&4%{_rank}% &crang nem létezik!") to {_p}
+		stop
+
+	# Prefixet előre lekérdezzük, mert törlés után nehéz lenne
+	set {_prefix} to colored {ranks::%{_rank}%::prefix}
+
+	# Elvesszük mindenkitől a kitörlendő rangot
+	loop indices of {rank::*}:
+		set {_target} to loop-value parsed as offlineplayer
+		set {_rank} to {rank::%uuid of {_target}%}
+
+		ranks_remove({_target})
+
+	# Előbb kitöröljük a Team-et, mert törlés után nehéz lenne
+	ranks_team_delete({_rank})
+
+	# Ténylegesen kitöröljük a rangot
+	delete {ranks::%{_rank}%::*}
+	delete {ranks::%{_rank}%}
+
+	server_log("rank", "%display_name({_p})% &fkitörölte a(z) %colored {_prefix}% &frangot!")

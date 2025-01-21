@@ -1,0 +1,12 @@
+on load:
+
+	set {global::server::name} to "SZERVERNÉV"
+	set {global::server::motd} to "<gradient:#00aeff:#005dab><bold>%{global::server::name}%"
+	set {global::server::domain} to "&7mc.%{global::server::name}%.hu"
+	set {global::server::version} to "1.19.4 - 1.21.4"
+
+	set {global::economy::min} to 5
+	set {global::economy::max} to 30
+
+	set {global::color::main} to "<#00aeff>"
+	set {global::color::player} to "&7"

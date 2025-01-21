@@ -1,0 +1,9 @@
+command /spawn:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/spawn
+	description: Elteleportálás a spawnra
+	trigger:
+
+		spawn_teleport(player)

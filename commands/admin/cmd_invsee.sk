@@ -1,0 +1,15 @@
+command /invsee [<offlineplayer>]:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/invsee &a<játékos>
+	description: Játékos leltárjának megnyitása
+	permission: invsee
+	trigger:
+
+		if arg-1 is not online:
+			send server_feedback("error", "&4%arg-1% &cnem elérhető!")
+			stop
+			
+		open inventory of arg-1 to player
+		server_log("admin", "%display_name(player)% &fmegnyitotta %display_name(arg-1)% &fleltárját!")

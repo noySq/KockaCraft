@@ -1,0 +1,15 @@
+function display_name(p: offlineplayer) :: text:
+
+	if {_p} is not set:
+		return "&c&lSZERVER"
+
+	set {_rank} to {rank::%uuid of {_p}%}
+
+	if {_rank} is set:
+		set {_prefix} to colored "%{ranks::%{_rank}%::prefix}% "
+	else:
+		set {_prefix} to ""
+
+	set {_player_name_color} to {global::color::player}
+
+	return colored "%{_prefix}%%{_player_name_color}%%{_p}%"

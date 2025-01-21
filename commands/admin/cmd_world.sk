@@ -1,0 +1,33 @@
+options:
+	envs: "normal" or "the end" or "nether"
+
+command /world [<text>] [<text>] [<text>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/world 
+	description: Világ kezelő
+	permission: world
+	trigger:
+
+		if arg-1 = "letrehoz":
+
+			if arg-3 does not contain {@envs}:
+				send server_feedback("error", "&cIlyen környezet nem létezik!") to player
+				stop
+
+			world_create(arg-2, (arg-3 parsed as environment))
+
+		else if arg-1 = "torol":
+			world_delete(arg-2)
+
+		else if arg-1 = "reset":
+			world_reset(arg-2)
+
+		else if arg-1 = "teleport":
+			world_teleport(player, arg-2)
+
+on tab complete of "/world":
+	set tab completions for position 1 to "letrehoz", "torol", "teleport", "reset"
+	set tab completions for position 2 to all worlds
+	set tab completions for position 3 to {@envs}

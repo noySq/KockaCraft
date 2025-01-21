@@ -1,0 +1,13 @@
+function world_reset(world: text):
+	
+	loop all players where [input is in world({_world})]:
+		
+		spawn_teleport(loop-player)
+		send server_feedback("warning", "&6A ß%{_world}% &6világ újragenerálódik, ezért el lettél teleportálva!") to loop-player
+		
+	server_log("world", "ß%{_world}% &fvilág újragenerálása...")
+		
+	set {_env} to environment of {_world}
+		
+	world_delete({_world})
+	world_create({_world}, {_env})

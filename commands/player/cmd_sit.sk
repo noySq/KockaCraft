@@ -1,0 +1,13 @@
+command /sit:
+
+	aliases: leul, ules
+	executable by: players
+	usage: &f/sit
+	description: Leülteti a karaktered
+	trigger:
+
+		spawn text display at location of player ~ vector(0, 0, 0):
+			set (metadata "seat" of entity) to true
+			set {_entity} to entity
+
+		make player ride {_entity}

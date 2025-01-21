@@ -1,0 +1,4 @@
+function tablist_name(p: player):
+
+	# Beállítjuk a tablistán a játékos nevét ugyanarra, mint a chaten
+	set {_p}'s tablist name to display_name({_p})

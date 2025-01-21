@@ -1,0 +1,4 @@
+every 5 minutes:		
+	loop all players:
+		if (metadata "back" of loop-player) isn't set:
+			set (metadata "back_5_min" of loop-player) to location of loop-player

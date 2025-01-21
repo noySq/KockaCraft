@@ -1,0 +1,44 @@
+options:
+	anti-url-regex: "((http|ftp|https):\/\/)?[-a-zA-Z0-9@:%%._\+~##=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%%_\+.~##?&=]*)"
+
+on async chat:
+
+	# Ha nem telt el 1 másodperc két üzenet között, cancel
+	if anti_spam(player, 1 second) = true:
+		send server_feedback("warning", "&6Várj egy pillanatot!")
+		cancel event
+
+	# Megnézzük, hogy az üzenet egy link, ha igen akkor cancel
+	if async chat message matches {@anti-url-regex}:
+		send server_feedback("warning", "&6Nem küldhetsz semmilyen linket a chatre!")
+		cancel event
+
+	set {_p} to player
+	set {_rank} to {rank::%uuid of {_p}%}
+
+	# Beállítjuk a formatot
+	set {_chat_color} to {ranks::%{_rank}%::chat_color} ? "&f"
+	set {_format::1} to text component from "%display_name({_p})% &8> "
+	set {_format::2} to colored "%{_chat_color}%%async chat message%"
+
+	set {_format} to merge components {_format::*}
+
+	# [item] kilinkeli a tárgyat a chatre
+	if "%{_format}%" contains "[item]":
+
+		set {_t} to translate component of player's tool
+
+		set color format of {_t} to rgb(0, 174, 255)
+		set hover event of {_t} to hover event showing player's tool
+
+		set {_m} to merge components ("[", {_t}, "]")
+
+		component replace "\[item]" with {_m} in {_format}
+
+	# Véglegesítjük az üzenetet
+	set async chat format to {_format}
+
+on command:
+	if anti_spam(player, 1 second) = true:
+		send server_feedback("warning", "&6Várj egy pillanatot!")
+		cancel event

@@ -1,0 +1,21 @@
+command /fej [<offlineplayer>]:
+
+	prefix: kockacraft
+	aliases: head
+	executable by: players
+	usage: &f/fej &a<játékosnév>
+	description: Játékos fejének lehívása
+	cooldown: 5 minutes
+	cooldown message: %server_feedback("error", "&cEzt a parancsot csak &45 &cpercenként használhatod!")%
+	trigger:
+
+		if arg-1 is not set:
+			cancel cooldown
+			send server_feedback("error", "&cHasználat: &c/fej &4játékosnév")
+
+		if player can't hold arg 1's skull:
+			cancel cooldown
+			send server_feedback("error", "&cNincs hely a leltáradban!")
+
+		give arg-1's skull to player
+		send server_feedback("success", "&fLehívtad ß%arg-1% &ffejét!")

@@ -1,0 +1,8 @@
+function world_teleport(p: player, world: text):
+
+	if {_world} is not loaded:
+		send server_feedback("error", "ß%{_world}% &cvilág nincs betöltve vagy nem létezik!") to {_p}
+		stop
+		
+	teleport {_p} to spawn of world({_world})
+	send server_feedback("casual", "&fTeleportálás a(z) ß%{_world}% &fvilágba!") to {_p}

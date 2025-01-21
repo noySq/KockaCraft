@@ -1,0 +1,23 @@
+command /feed [<offlineplayer>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/feed <játékos>
+	description: Játékos éhség szintjének feltöltése
+	permission: feed
+	trigger:
+
+		if arg-1 is not set:
+
+			feed player
+			send server_feedback("casual", "&fAz éhség szinted ßfeltöltve&f!")
+
+		else:
+			if arg-1 is not online:
+				send server_feedback("error", "&cnem elérhető!")
+				stop
+				
+			feed arg-1
+
+			server_log("admin", "%display_name(player)% &ffeltöltötte %display_name(arg-1)% &féhségét!")
+			send server_feedback("casual", "&fAz éhség szinted ßfeltöltve&f!") to arg-1

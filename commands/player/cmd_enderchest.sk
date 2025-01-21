@@ -1,0 +1,11 @@
+command /enderchest:
+
+	prefix: kockacraft
+	aliases: ec
+	executable by: players
+	usage: &f/enderchest
+	description: Saját enderchest megnyitása
+	trigger:
+
+		open player's ender chest to player
+		send server_feedback("casual", "&fMegnyitottad a ßEnderládád&f!")

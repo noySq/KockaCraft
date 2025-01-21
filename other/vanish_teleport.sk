@@ -1,0 +1,3 @@
+on teleport:
+	if (metadata "vanish" of player) = true:
+		hide player from all players where [input doesn't have permission "vanish"]

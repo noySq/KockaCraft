@@ -1,0 +1,18 @@
+function ranks_team_create(rank: text):
+
+	set {_weight} to {ranks::%{_rank}%::weight}
+	set {_prefix} to {ranks::%{_rank}%::prefix}
+
+	# Létrehozunk egy Minecraft Team-et, ez kell a NameTag megváltoztatása miatt
+
+	# A {_weight} ami meghatározza, hogy hol helyezkedjen el a tablistán
+	# minél több     (pl.: "a-admin")   annál feljebb
+	# minél kevesebb (pl.: "z-default") annál lejjebb
+	# A -> Z
+	set {_team} to team named "%{_weight}%-%{_rank}%"
+	
+	# Prefixet beállítjuk ugyanarra, mint a ranggét
+	set team prefix of {_team} to "%colored {_prefix}% "
+
+	# Ez a játékosnév színe lesz a prefix után
+	set team color of {_team} to gray

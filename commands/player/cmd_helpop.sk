@@ -1,0 +1,26 @@
+command /helpop [<text>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/helpop &a<üzenet>
+	description: Segítségkérés az adminoktól
+	trigger:
+	
+		if arg-1 is not set:
+			cancel cooldown
+			send server_feedback("error", "&cHasználat: &c/helpop &4<üzenet>")
+			stop
+		
+		if size of all players where [input has permission "log"] = 0:
+			send server_feedback("warning", "&fNincs elérhető &c&lADMIN&f, értesítve lettek &9Discordon&f!")
+			stop
+			#post "%player% > %arg-1%" to text channel with id "1201174256973791344"
+
+		send "" to all players where [input has permission "log"]
+		server_log("helpop", "%display_name(player)% &8> &r%colored arg-1%")
+		send "" to all players where [input has permission "log"]
+
+		send server_feedback("casual", "&e&lHELPOP &8| %display_name(player)% &8> &r%colored arg-1%")
+
+on tab complete of "/helpop":
+	set tab completions for position 1 to "<üzenet>"

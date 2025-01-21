@@ -1,0 +1,10 @@
+command /reply [<text>]:
+
+	prefix: kockacraft
+	aliases: r
+	executable by: players
+	usage: &f/r <üzenet>
+	description: Gyors válaszolás a privát üzenetre
+	trigger:
+
+		private_message(player, (metadata "reply" of player), arg-1)

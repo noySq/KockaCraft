@@ -1,0 +1,14 @@
+on join:
+
+	# Kikapcsoljuk a vanilla csatlakozási szöveget
+	set join message to ""
+
+	# Ha a játékos már játszott
+	if player has played before:
+		send action bar "%display_name(player)% &acsatlakozott!" to all players
+
+	# Játékos első csatlakozása
+	else:
+		send action bar "%display_name(player)% &felőször jár itt! &8[#%number of offline players%]" to all players
+
+	#spawn(player)

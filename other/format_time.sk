@@ -1,0 +1,15 @@
+# Lehet nem szép, de működik :P
+
+# Átformálja az időt
+# 1 hour and 23 minutes and 45 seconds -> 1 óra 23 perc 45 másodperc
+function format_time(time: text) :: text:
+
+	# ????
+	replace all " and" with "" in {_time}
+	
+	replace all "seconds", "second" with "másodperc" in {_time}
+	replace all "minutes", "minute" with "perc" in {_time}    
+	replace all "hours", "hour" with "óra" in {_time}
+	replace all "days", "day" with "nap" in {_time}
+
+	return {_time}

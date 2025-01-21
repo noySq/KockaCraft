@@ -1,0 +1,12 @@
+function world_create(world: text, env: environment):
+	
+	if {_world} is loaded:
+		server_log("world", "ß%{_world}% &cvilág be van töltve vagy már létezik!")
+		stop
+	
+	set {_w} to world creator named {_world}
+
+	set environment option of {_w} to {_env}
+	load world from creator {_w}
+	
+	server_log("world", "ß%{_world}% &fvilág létrehozva!")

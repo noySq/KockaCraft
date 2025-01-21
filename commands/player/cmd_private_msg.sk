@@ -1,0 +1,14 @@
+command /message [<player>] [<text>]:
+
+	prefix: kockacraft
+	aliases: m, msg, tell, whisper, w
+	executable by: console and players
+	usage: &f/m <játékos> <üzenet>
+	description: Privát üzenet küldése egy játékosnak
+	trigger:
+
+		private_message(player, arg-1, arg-2)
+
+on tab complete of "/message", "/m", "/msg", "/tell", "/whisper", "/w":
+	set tab completions for position 1 to all players
+	set tab completions for position 2 to "<üzenet>"

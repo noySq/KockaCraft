@@ -1,0 +1,10 @@
+function world_delete(world: text):
+
+	if {_world} is not loaded:
+		server_log("world", "ß%{_world}% &cvilág nincs betöltve vagy nem létezik!")
+		stop
+
+	unload world {_world}
+	delete world file for {_world}
+	
+	server_log("world", "ß%{_world}% &fvilág kitörölve!")

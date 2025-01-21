@@ -1,0 +1,18 @@
+import:
+	fr.xephi.authme.events.LoginEvent
+
+on LoginEvent:
+
+	set {_p} to event.getPlayer()
+	set {_uuid} to uuid of {_p}
+
+	if bossbar with id "restartCountDown" is set:
+		add {_p} to boss bar with id "restartCountDown"
+
+	if {restartBack::%{_uuid}%} is set:
+
+		teleport {_p} to {restartBack::%{_uuid}%}
+		delete {restartBack::%{_uuid}%}
+
+		wait 5 tick
+		send "&7&l! &7| &fVissza lettél teleportálva az újraindítás előtti pozíciódra!" to {_p}

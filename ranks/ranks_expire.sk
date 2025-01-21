@@ -1,0 +1,11 @@
+every 5 minutes:
+
+	set {_unixNow} to unix timestamp of now
+
+	loop indices of {rank::*}:
+
+		if {rank::%loop-value%::expire} is set:
+			if {_unixNow} >= {rank::%loop-value%::lejarat}:
+
+				set {_target} to (loop-value parsed as offlineplayer)
+				ranks_remove({_target})

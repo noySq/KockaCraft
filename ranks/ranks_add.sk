@@ -1,0 +1,45 @@
+function ranks_add(p: player, target: offlineplayer, rank: text, time_for: timespan = 0 seconds):
+
+	# Ha nem létezik a rang, cancel
+	if {ranks::%{_rank}%::name} is not set:
+		send server_feedback("error", "&cRang &4%{_rank}% &cnem létezik!") to {_p}
+		stop
+
+	# Ha a {_target} nem volt még fent, cancel
+	if {_target} has not played before:
+		send server_feedback("error", "&4%{_target}% &cmég nem járt a szerveren!") to {_p}
+		stop
+
+	# Odaadjuk a rangot a {_target}-nek
+	set {rank::%uuid of {_target}%} to {_rank}
+
+	# Permission kezelő
+	#execute console command "/lp user %{_jatekos}% parent add %{_rang}%"
+
+	# Frissítjük a tablistán a játékos nevét
+	tablist_name({_target})
+
+	# Hozzáadjuk {_target}-et a rang Team-jéhez
+	ranks_team_add({_target})
+
+	# Ha lett megadva lejárati dátum, beállítjuk
+	if {_time_for} > 0 seconds:
+		set {rank::%uuid of {_target}%::expire} to unix timestamp of {_time_for} from now
+		set {_expire_date} to unix date of {rank::%uuid of {_target}%::expire}
+
+	set {_prefix} to colored {ranks::%{_rank}%::prefix}
+
+	server_log("rank", "%display_name({_p})% &fadott egy %{_prefix}% &frangot neki: %display_name({_target})%&f!")
+
+	# Ha {_target} elérhető, értesítjük róla
+	if {_target} is online:
+
+		#setTablistName({_jatekos})
+
+		send "" to {_target}
+		send server_feedback("casual", "%display_name({_p})% &fadott neked egy %{_prefix}% &frangot!") to {_target}
+
+		if {_time_for} > 0 seconds:
+			send server_feedback("warning", "&fA rang lejárati dátuma: &6%{_expire_date}%") to {_target}
+
+		send "" to {_target}

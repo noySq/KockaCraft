@@ -1,0 +1,37 @@
+on death of mob with priority highest:
+
+	if event is cancelled:
+		stop
+
+	if attacker is not player:
+		stop
+
+	give_money_and_feedback(attacker, eye of victim, 1 second)
+
+on break with priority highest:
+
+	if event is cancelled:
+		stop
+		
+	if age of event-block is set:
+		max age of event-block != age of event-block
+		stop
+
+	if any:
+		event-block is tagged with tag "minecraft:logs"
+		event-block is tagged with tag "paper:ores"
+		event-block is tagged with tag "paper:mushrooms"
+		event-block is tagged with tag "minecraft:crops"
+		event-block = pumpkin
+		event-block = melon
+		event-block = sugar cane
+
+	then:
+		give_money_and_feedback(player, event-block, 10 ticks)
+
+local function give_money_and_feedback(p: player, obj: object, duration: timespan):
+	set {_random_money} to calculate_money({_p}, {_obj})
+	{_random_money} is set
+
+	add {_random_money} to {egyenleg::%uuid of {_p}%}
+	show_text_display(location of {_obj}, format_balance({_random_money}), {_duration})

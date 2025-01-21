@@ -1,0 +1,30 @@
+command /mute [<offline player>] [<timespan>]:
+
+	prefix: kockacraft
+	executable by: console and players
+	usage: &f/mute &a<játékos> &a<időtartam angolul>
+	description: Játékos lenémítása
+	permission: mute
+	trigger:
+
+		if:
+			arg-1 is set
+			arg-2 is set
+
+		then:
+			if arg-1 is not online:
+				send server_feedback("error", "&4%arg-1% &cnem elérhető!")
+				stop
+
+			if arg-1 does not have permission "mute":
+				send server_feedback("error", "&4%arg-1% &cnem lenémítható!")
+				stop
+
+			set {mute::%uuid of arg-1%} to unix timestamp of arg-2 from now
+
+			server_log("mute", "%display_name(player)% &flenémította %display_name(arg-1)%&f-t!")
+
+			send "" to arg-1
+			send server_feedback("warning", "&6Le lettél némítva!") to arg-1
+			send server_feedback("warning", "&fLejárat: &6%format_timespan(arg-2)%", true) to arg-1
+			send "" to arg-1

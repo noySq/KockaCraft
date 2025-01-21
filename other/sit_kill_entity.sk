@@ -1,0 +1,6 @@
+on dismount:
+	set {_vehicle} to vehicle of player
+
+	if {_vehicle} has metadata "seat":
+		wait 1 tick
+		delete entity within {_vehicle}

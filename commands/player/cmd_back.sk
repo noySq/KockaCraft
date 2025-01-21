@@ -1,0 +1,24 @@
+command /back:
+
+	prefix: kockacraft
+	executable by: players
+	usage: &f/back
+	description: Visszateleportálás a halálod helyszínére
+	trigger:
+
+		if (metadata "back" of player) is set:
+
+			teleport player to (metadata "back" of player)
+			delete (metadata "back" of player)
+
+			send server_feedback("casual", "&fTeleportálás ßhalálod helyszínére...")
+
+		else if (metadata "back_5_min" of player) is set:
+
+			teleport player to (metadata "back_5_min" of player)
+			delete (metadata "back_5_min" of player)
+
+			send server_feedback("casual", "&fTeleportálás ß5 perccel ezelőtti &fhelyszínedre...")
+			
+		else:
+			send server_feedback("error", "&cNincs hova visszamenni!")

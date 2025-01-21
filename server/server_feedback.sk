@@ -1,0 +1,23 @@
+options:
+	casual-format:  "&7&l> &8| &r%{_message}%"
+	success-format: "&a&l✔ &8| &r%{_message}%"
+	warning-format: "&6⚠ &8| &r%{_message}%"
+	error-format:   "&c&l✖ &8| &r%{_message}%"
+
+function server_feedback(type: string, message: text, silent: boolean = false) :: text:
+
+	replace every "ß" in {_message} with {global::color::main}
+
+	if {_type} = "casual":
+		play sound "block.note_block.pling" with volume 0.3 to {_p} if {_silent} = false
+		return {@casual-format}
+
+	if {_type} = "success":
+		return {@success-format}
+
+	if {_type} = "warning":
+		return {@warning-format}
+
+	if {_type} = "error":
+		play sound "BLOCK_ANVIL_LAND" with volume 0.1 to {_p} if {_silent} = false
+		return {@error-format}

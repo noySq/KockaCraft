@@ -1,0 +1,20 @@
+on item spawn:
+	set_item_nametag(event-entity)
+
+on item merge:
+	set {_item} to future event-entity
+	wait 1 tick
+	set_item_nametag({_item})
+	
+local function set_item_nametag(e: entity):
+
+	set {_amount} to item amount of item of {_e}
+	set {_m::1} to text component from "%{global::color::main}%%{_amount}%&7x "
+
+	if name of item of {_e} is set:
+		set {_m::2} to text component of name of item of {_e}
+	else:
+		set {_m::2} to translate component of item of {_e}
+
+	set {_m} to merge components {_m::*}
+	set component entity display name of {_e} to {_m}

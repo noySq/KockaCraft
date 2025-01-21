@@ -1,0 +1,16 @@
+function show_text_display(loc: location, text: text, duration: timespan = 0 seconds):
+
+	spawn text display at {_loc}:
+
+		set display text of entity to colored {_text}
+		set display billboard of entity to center
+		set display text alignment of entity to center aligned
+		set display text shadowed of entity to true		
+		set display view range of entity to 10
+
+		set {_entity} to entity
+
+	if {_duration} > 0 seconds:
+
+		wait {_duration}
+		kill {_entity}

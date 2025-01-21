@@ -1,0 +1,55 @@
+command /jatekidotop:
+
+	prefix: kockacraft
+	aliases: idotop
+	executable by: console and players
+	usage: &f/jatekidotop
+	description: Játékidő toplista megtekintése
+	trigger:
+
+		if difference between now and {-top::playtime::renewed} <= 10 minutes:
+
+			send ""
+			send server_feedback("warning", "&fUtoljára frissítve: ß%{-jatekidotop::renewed}%")
+			send ""
+
+			loop {-top::playtime::*}:
+
+				# Egy kis hack, mert nem lehet ellenőrízni, hogy az index egy szám-e XD
+				loop-index != "renewed"
+
+				add 1 to {_num}
+
+				set {_target} to (loop-value parsed as offlineplayer)
+				set {_target_playtime} to time played of {_target}
+
+				set {-top::playtime::%loop-index%} to loop-value
+
+				send server_feedback("casual", "ß%loop-index%&f. - %display_name({_target})%&f: ß%format_timespan({_target_playtime})%", true)
+
+				if {_num} = 10:
+					stop loop
+
+		else:
+
+			send ""
+			send server_feedback("warning", "&fUtoljára frissítve: ßMOST")
+			send ""
+
+			set {-top::playtime::renewed} to now
+
+			loop all offline players:
+				set {_jatekido::%uuid of loop-offlineplayer%} to time played of loop-offlineplayer
+
+			set {_top::*} to get_paginated_objects(1, 10, sorted indices of {_jatekido::*} in descending order)
+
+			loop {_top::*}:
+
+				set {_target} to (loop-value parsed as offlineplayer)
+				set {_target_playtime} to time played of {_target}
+
+				add loop-value to {-top::playtime::*}
+
+				send server_feedback("casual", "ß%loop-index%&f. - %display_name({_target})%&f: ß%format_timespan({_target_playtime})%", true)
+
+		send ""
