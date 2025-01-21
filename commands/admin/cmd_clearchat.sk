@@ -19,3 +19,6 @@ command /clearchat [<text>]:
 
 			delete {-signatures::*}
 			server_log("admin", "%display_name(player)% &fkitörölte a játékosok chatjét!")
+
+on tab complete of "/clearchat" or "/cc":
+	set tab completions for position 1 to "all"
