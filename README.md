@@ -39,6 +39,6 @@ Skript 2.10.0
 SkBee 3.8.1
 ```
 ```bash
-skript-reflect >2.
+skript-reflect >2.6
 ```
 
