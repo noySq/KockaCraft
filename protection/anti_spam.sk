@@ -1,0 +1,28 @@
+function anti_spam(p: player, limit: timespan) :: boolean:
+
+	# Jogosultsággal rendelkezőket nem vesszük figyelembe
+	if {_p} has permission "spam.bypass":
+		stop
+
+	# Kiszámoljuk a különbséget az elmentett idő és mostani idő között
+	# Ha nincs szám, akkor használjuk a limitet helyette
+	set {_time} to (metadata "chatCD" of {_p})
+	set {_timeDiff} to difference between now and {_time} ? {_limit}
+
+	# Ha az eltelt idő több vagy egyenlő mint a limit akkor engedjük
+	if {_timeDiff} >= {_limit}:
+
+		set {_cancel} to false
+		set (metadata "chatCD" of {_p}) to now
+
+	# Ha nem, akkor cancel
+	else:
+
+		set {_cancel} to true
+		set (metadata "chatCD" of {_p}) to now
+
+	return {_cancel}
+
+# Kilépésnél kitöröljük, ne foglalja feleslegesen a memóriát
+on quit:
+	delete (metadata "chatCD" of player)

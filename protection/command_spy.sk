@@ -1,0 +1,27 @@
+on command:
+
+	# Ha nem Skript parancs (pl. login, register) akkor nem érdekes
+	if command does not contain all script commands:
+		stop
+
+	loop all players:
+
+		# CommandSpy bekapcsolva és a parancsküldő nem saját maga
+		if all:
+			(metadata "cmdSpy" of loop-player) = true
+			command sender != loop-player
+		
+		then:
+			server_log("cmdspy", "%display_name(player)% &8> /&2%complete command%")
+
+# Kilépésnél kikapcsoljuk a CommandSpy-t
+on quit:
+	delete (metadata "cmdSpy" of player)
+
+#import:
+	#fr.xephi.authme.events.LoginEvent
+
+#on LoginEvent:
+	#set {_p} to event.getPlayer()
+	#if {_p} is op:
+		#set (metadata "cmdSpy" of {_p}) to true

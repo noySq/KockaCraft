@@ -1,0 +1,36 @@
+# Dolgok importálása
+import:
+	java.util.Scanner
+	java.net.URL
+
+# Maga a VPN API amit használni kell
+options:
+	api-1: API
+
+# Létrehozzuk a sectiont, ami a fenti API segítségével ellenőrzi az IP címet
+on load:
+	create new section with arguments variables {_ip}, {_return} stored in {-section::vpn}:
+
+		# Maga az API beolvasása kókány módon
+		set {_scanner} to new Scanner(new URL("{@api-1}").openStream(), "UTF-8").useDelimiter("\\A").next()
+		if {_scanner} contain """proxy"":true":
+			# Ha az IP cím VPN-ként van jelölve, visszaküldünk egy true booleant
+			return true
+
+# Az effekt amit le lehet futtatni egy IP címen
+# A fenti sectiont futtatja le !!! aszinkronikusan !!!
+# Csak ezzel a módszerrel lehet ezt megoldani, mivel function nem tud várakozni az eredményre
+effect async vpn check %text% save in %object%:
+
+	trigger:
+
+		delay effect
+
+		set {_ip} to expr-1
+		set {_return} to false
+
+		run section {-section::vpn} async with arguments {_ip} and store result in {_return} and wait
+
+		set the raw expr-2 to {_return}
+
+		continue

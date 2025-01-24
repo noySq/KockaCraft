@@ -1,0 +1,27 @@
+# Létrehozzuk a sectiont, ami logolja majd a parancsokat és a chatet
+on load:
+	create new section with arguments variables {_p}, {_command} stored in {-section::log::cmd}:
+		log "%{_p}%: /%{_command}%" to "command.log"
+		
+	create new section with arguments variables {_p}, {_message} stored in {-section::log::chat}:
+		log "%{_p}%: %{_message}%" to "chat.log"
+
+# Parancs lefuttatásakor aszinkronikusan lefuttatjuk a sectiont
+on command:
+
+	set {_p} to player
+	set {_command} to full command
+
+	# Ha nem Skript parancs (pl. login, register) akkor nem érdekes
+	if {_command} does not contain all script commands:
+		stop
+
+	run section {-section::log::cmd} async with arguments {_p}, {_command} and wait
+
+# Chat íráskor aszinkronikusan lefuttatjuk a sectiont
+on chat:
+
+	set {_p} to player
+	set {_message} to message
+
+	run section {-section::log::chat} async with arguments {_p}, {_message} and wait

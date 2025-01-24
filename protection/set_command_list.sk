@@ -1,0 +1,37 @@
+options:
+	permission: "commandlist"
+
+on load:
+
+	# AuthMe dolgokat manuálisan hozzáadjuk, mivel nem Skript parancsok
+	add "register", "reg" to {-commandlist::*}
+	add "login", "log", "l" to {-commandlist::*}
+	
+	# Loopoljuk az összes Skript parancsot, aminek nem kell permission, és hozzáadjuk egy listához
+	# A lista újraindítás után kitörlődik
+	loop all script commands:
+		# Alapvetően ez csak a játékosoknak van kitalálva
+		# Jogosultsággal rendelkező emberek kivételek
+		if permission of command loop-value is "":
+			add loop-value to {-commandlist::*}
+
+on send command list:
+	
+	# Fentebb említett jogosultság miatt cancel
+	stop if player has permission {@permission}
+	
+	# Játékosok számára látható parancs lista beállítása
+	set command list to {-commandlist::*}
+
+on command:
+
+	# Fentebb említett jogosultság miatt cancel
+	# Konzolt külön kell kezelni, mivel nem egy játékos
+	stop if executor is console
+	stop if player has permission {@permission}
+
+	# Ha nincs benne a listában a parancs amit futtatni szeretne, akkor cancel
+	if {-commandlist::*} doesn't contain command:
+
+		send server_feedback("warning", "&6Ismeretlen parancs! &7(/%command%&7)")
+		cancel event
