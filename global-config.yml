@@ -1,0 +1,46 @@
+server:
+  texts:
+    name: "SZERVERNÉV"
+    motd: "<gradient:#00aeff:#005dab><bold>SZERVERNÉV"
+    domain: "&7mc.SZERVERNÉV.hu"
+    version: "1.19.4 - 1.21.4"
+    server-color: "<#00aeff>"
+    player-name-color: "&7"
+
+  economy:
+    min-money: 5
+    max-money: 30
+    chance-to-get-money: 50
+
+permissions:
+  admin-commands:
+    broadcast: admin.broadcast
+    clearinventory: admin.clearinventory
+    clearchat: admin.clearchat
+    commandspy: admin.commandspy
+    feed: admin.feed
+    fly: admin.fly
+    gamemode: admin.gamemode
+    heal: admin.heal
+    invsee: admin.invsee
+    mute: admin.mute
+    unmute: admin.unmute
+    ranks: admin.ranks
+    restart: admin.restart
+    speed: admin.speed
+    vanish: admin.vanish
+    world: admin.world
+
+  log:
+    receive-log: log.receive
+
+  home:
+    default-home-num: 5
+    more-home-num: 10
+    more-home-permission: home.more
+
+  spam:
+    bypass-spam: spam.bypass
+
+  command-list:
+    bypass-command-list: command.list.bypass

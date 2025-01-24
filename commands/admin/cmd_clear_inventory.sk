@@ -5,8 +5,11 @@ command /clearinventory [<offlineplayer>]:
 	executable by: console and players
 	usage: &f/clearinventory <játékos>
 	description: Leltár törlése
-	permission: clearinventory
+	permission: admin
 	trigger:
+
+		if check_permission(executor, "clearinventory", "admin-commands") = false:
+			stop
 	
 		if arg-1 is set:
 

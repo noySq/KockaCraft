@@ -4,8 +4,11 @@ command /unmute [<offline player>]:
 	executable by: console and players
 	usage: &f/unmute &a<játékos>
 	description: Játékos lenémításának levétele
-	permission: mute
+	permission: admin
 	trigger:
+
+		if check_permission(executor, "unmute", "admin-commands") = false:
+			stop
 
 		if arg-1 is not online:
 			send server_feedback("error", "&4%arg-1% &cnem elérhető!")

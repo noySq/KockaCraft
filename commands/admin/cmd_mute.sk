@@ -4,8 +4,11 @@ command /mute [<offline player>] [<timespan>]:
 	executable by: console and players
 	usage: &f/mute &a<játékos> &a<időtartam angolul>
 	description: Játékos lenémítása
-	permission: mute
+	permission: admin
 	trigger:
+
+		if check_permission(executor, "mute", "admin-commands") = false:
+			stop
 
 		if:
 			arg-1 is set

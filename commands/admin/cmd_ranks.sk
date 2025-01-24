@@ -11,8 +11,11 @@ command /rang [<text>] [<text>] [<text>] [<text>] [<text>]:
 	executable by: console and players
 	usage: &f/rang
 	description: Ranggal kapcsolatos parancsok
-	permission: rang
+	permission: admin
 	trigger:
+
+		if check_permission(executor, "ranks", "admin-commands") = false:
+			stop
 
 		if arg-1 = "letrehoz":
 			ranks_create(player, arg-2, arg-3, arg-4, arg-5)

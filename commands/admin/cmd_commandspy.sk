@@ -1,11 +1,15 @@
-command /cmdspy:
+command /commandspy:
 
+	aliases: cmdspy
 	prefix: kockacraft
 	executable by: players
 	usage: &f/cmdspy
 	description: Játékosok által küldött parancsok kiiratása
-	permission: cmdspy
+	permission: admin
 	trigger:
+
+		if check_permission(executor, "commandspy", "admin-commands") = false:
+			stop
 
 		if (metadata "cmdSpy" of player) is not set:
 

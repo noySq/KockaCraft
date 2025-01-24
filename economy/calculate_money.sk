@@ -4,7 +4,11 @@ function calculate_money(p: player, obj: object) :: number:
 
 	if byte tag "dupe" of {_nbt} is not set:
 
-		if chance of {global::economy::chance}:
-			set {_random_money} to random number between {global::economy::min} and {global::economy::max}
+		set {_economy::chance} to yaml value "server.economy.chance-to-get-money" from "global-config"
+		set {_economy::min} to yaml value "server.economy.min-money" from "global-config"
+		set {_economy::max} to yaml value "server.economy.max-money" from "global-config"
+
+		if chance of {_economy::chance}:
+			set {_random_money} to random number between {_economy::min} and {_economy::max}
 
 	return {_random_money}

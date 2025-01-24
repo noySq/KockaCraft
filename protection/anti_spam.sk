@@ -1,7 +1,7 @@
 function anti_spam(p: player, limit: timespan) :: boolean:
 
 	# Jogosultsággal rendelkezőket nem vesszük figyelembe
-	if {_p} has permission "spam.bypass":
+	if check_permission({_p}, "bypass-spam", "spam") = true:
 		stop
 
 	# Kiszámoljuk a különbséget az elmentett idő és mostani idő között

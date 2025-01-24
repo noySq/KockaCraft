@@ -1,13 +1,8 @@
-options:
-	motd-line-1: %{global::server::motd}%
-	motd-line-2: &ablah blah blah blah blah blah blah
-	
-	server-version: %{global::server::version}%
-
 on server list ping:
 
-	set {_line::1} to text_center(mini message from "{@motd-line-1}", 124)
-	set {_line::2} to text_center("{@motd-line-2}", 120)
+	set {_motd::line::1} to text_center(yaml value "server.texts.motd" from "global-config", 124)
+	set {_motd::line::2} to text_center(yaml value "server.texts.motd" from "global-config", 124)
+	set {_motd::version} to yaml value "server.texts.version" from "global-config"
 
-	set the motd to colored "%{_line::1}% %nl% %{_line::2}%"
-	set version string to "{@server-version}"
+	set the motd to colored "%{_motd::line::1}% %nl% %{_motd::line::2}%"
+	set version string to {_motd::version}

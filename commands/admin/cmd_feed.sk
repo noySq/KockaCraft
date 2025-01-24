@@ -4,8 +4,11 @@ command /feed [<offlineplayer>]:
 	executable by: console and players
 	usage: &f/feed <játékos>
 	description: Játékos éhség szintjének feltöltése
-	permission: feed
+	permission: admin
 	trigger:
+
+		if check_permission(executor, "feed", "admin-commands") = false:
+			stop
 
 		if arg-1 is not set:
 

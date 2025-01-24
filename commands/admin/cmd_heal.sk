@@ -4,8 +4,11 @@ command /heal [<offlineplayer>]:
 	executable by: console and players
 	usage: &f/heal &a<játékos>
 	description: Játékos életének feltöltése
-	permission: heal
+	permission: admin
 	trigger:
+
+		if check_permission(executor, "heal", "admin-commands") = false:
+			stop
 
 		if arg-1 is not set:
 

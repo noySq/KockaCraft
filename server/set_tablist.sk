@@ -1,8 +1,8 @@
 on load:
 	create new section with arguments variables {_p} stored in {-section::tablist}:
 
-		set {_server::name} to mini message from {global::server::motd}
-		set {_server::domain} to {global::server::domain}
+		set {_server::name} to (mini message from yaml value "server.texts.motd" from "global-config")
+		set {_server::domain} to yaml value "server.texts.domain" from "global-config"
 
 		set {_balance} to {egyenleg::%uuid of {_p}%}
 		set {_online} to number of all players
@@ -13,7 +13,8 @@ on load:
 		set {_header} to "%nl% %{_server::name}% %nl% &7🕑 %now% %nl% "
 		set {_footer} to "%nl% ß%{_ping}% &8ms &r &7| &r %format_balance_k({_balance})% &r &7| &r ß%{_tps}% &8tps&r %nl% %nl% ß%{_online}% &7/ ß%{_max}% %nl% %{_server::domain}% %nl%"
 
-		replace every "ß" in ({_header}, {_footer}) with {global::color::main}
+		set {_color} to yaml value "server.texts.server-color" from "global-config"
+		replace every "ß" in ({_header}, {_footer}) with {_color}
 
 		set tablist header of {_p} to colored {_header}
 		set tablist footer of {_p} to colored {_footer}

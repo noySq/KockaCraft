@@ -1,9 +1,5 @@
 options:
-
-	log_permission: "log"
-
 	admin: &c&lADMIN
-
 	rank: &3&lRANG
 	protection: &4&lVÉDELEM
 	cmdspy: &2&lCMDSPY
@@ -15,7 +11,8 @@ options:
 
 function server_log(type: text, message: text):
 
-	replace every "ß" in {_message} with {global::color::main}
+	set {_color} to colored (yaml value "server.texts.server-color" from "global-config")
+	replace every "ß" in {_message} with {_color}
 
 	if {_type} = "admin":
 		set {_final_msg} to "{@admin} &8| %{_message}%"
@@ -48,7 +45,7 @@ function server_log(type: text, message: text):
 
 	loop all players:
 
-		loop-player has permission {@log_permission}
+		check_permission(loop-player, "log.receive", "log") = true
 		add loop-player to {_send_to::*}
 
 		send {_final_msg} to {_send_to::*}

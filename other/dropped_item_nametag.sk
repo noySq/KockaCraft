@@ -9,7 +9,9 @@ on item merge:
 local function set_item_nametag(e: entity):
 
 	set {_amount} to item amount of item of {_e}
-	set {_m::1} to text component from "%{global::color::main}%%{_amount}%&7x "
+	set {_color} to yaml value "server.texts.server-color" from "global-config"
+
+	set {_m::1} to text component from "%{_color}%%{_amount}%&7x "
 
 	if name of item of {_e} is set:
 		set {_m::2} to text component of name of item of {_e}

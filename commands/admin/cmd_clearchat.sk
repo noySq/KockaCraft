@@ -5,8 +5,11 @@ command /clearchat [<text>]:
 	executable by: console and players
 	usage: &f/clearchat
 	description: Chat kitörlése
-	permission: chat
+	permission: admin
 	trigger:
+
+		if check_permission(executor, "clearchat", "admin-commands") = false:
+			stop
 
 		if arg-1 = "all":
 			loop 100 times:

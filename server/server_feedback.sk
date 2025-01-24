@@ -6,7 +6,8 @@ options:
 
 function server_feedback(type: string, message: text, silent: boolean = false) :: text:
 
-	replace every "ß" in {_message} with {global::color::main}
+	set {_color} to colored (yaml value "server.texts.server-color" from "global-config")
+	replace every "ß" in {_message} with {_color}
 
 	if {_type} = "casual":
 		play sound "block.note_block.pling" with volume 0.3 to {_p} if {_silent} = false

@@ -5,8 +5,11 @@ command /gamemode [<text>] [<offlineplayer>]:
 	executable by: players
 	usage: &f/gamemode <mód>
 	description: Játékosmódok változtatása
-	permission: gamemode
+	permission: admin
 	trigger:
+
+		if check_permission(executor, "gamemode", "admin-commands") = false:
+			stop
 
 		if arg-2 is not set:
 
