@@ -17,6 +17,7 @@ permissions:
     broadcast: admin.broadcast
     clearinventory: admin.clearinventory
     clearchat: admin.clearchat
+    crash: admin.crash
     commandspy: admin.commandspy
     feed: admin.feed
     fly: admin.fly
