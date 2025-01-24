@@ -34,7 +34,7 @@ https://discord.com/invite/T4De4FMk9E
 Szükséges dolgok a futtatáshoz
 
 ```bash
-Paper 1.21.3
+Purpur 1.21.3
 ```
 ```bash
 Skript 2.10.0
@@ -44,5 +44,8 @@ SkBee 3.8.1
 ```
 ```bash
 skript-reflect 2.6
+```
+```bash
+skript-yaml 1.6
 ```
 
