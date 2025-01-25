@@ -1,0 +1,2 @@
+on skript start:
+	load yaml "plugins/Skript/scripts/kockacraft/global-config.yml" as "global-config"
