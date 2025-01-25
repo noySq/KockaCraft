@@ -1,7 +1,7 @@
 function world_create(world: text, env: environment):
 	
 	if {_world} is loaded:
-		server_log("world", "ß%{_world}% &cvilág be van töltve vagy már létezik!")
+		server_log("world", yaml value "messages.already-exist" from "world-config")
 		stop
 	
 	set {_w} to world creator named {_world}
@@ -9,4 +9,4 @@ function world_create(world: text, env: environment):
 	set environment option of {_w} to {_env}
 	load world from creator {_w}
 	
-	server_log("world", "ß%{_world}% &fvilág létrehozva!")
+	server_log("world", yaml value "messages.successfully-created" from "world-config")

@@ -1,2 +1,6 @@
 on skript start:
-	load yaml "plugins/Skript/scripts/kockacraft/global-config.yml" as "global-config"
+	# Globális konfigurációs fájl
+	load yaml "plugins/Skript/scripts/kockacraft/configs/global-config.yml" as "global-config"
+
+	# Komponens konfigurációs fájlok
+	load yaml "plugins/Skript/scripts/kockacraft/configs/world-config.yml" as "world-config"
