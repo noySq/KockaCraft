@@ -20,7 +20,7 @@ on async chat:
 	set {_chat_color} to {ranks::%{_rank}%::chat_color} ? "&f"
 
 	# Beállítjuk a formatot
-	set {_format::1} to text component from {config::server::chat::player-format}
+	set {_format::1} to text component from "%display_name({_p})% &8> "
 	set {_format::2} to colored "%{_chat_color}%%async chat message%"
 
 	# Mergeljük a két komponenst

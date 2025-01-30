@@ -1,8 +1,5 @@
 on load:
 
-	# server/chat_manager.sk | Chat format
-	set {config::server::chat::player-format} to "%display_name({_p})% &8> "
-
 	# server/chat_manager.sk | Spam cooldown
 	set {config::server::message::wait} to "&6Várj egy pillanatot!"
 	# server/chat_manager.sk | Anti-url
