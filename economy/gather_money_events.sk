@@ -1,20 +1,25 @@
 on death of mob with priority highest:
+	# Ha valami már megállította az eventet, itt is megállunk
 	if event is cancelled:
 		stop
 
+	# Ha a támadó nem egy játékos, akkor megállunk
 	if attacker is not player:
 		stop
 
 	give_money_and_feedback(attacker, eye of victim, 1 second)
 
 on break with priority highest:
+	# Ha valami már megállította az eventet, itt is megállunk
 	if event is cancelled:
 		stop
 		
+	# Növények esetében, ha nincs teljesen kifejlődve, akkor megállunk
 	if age of event-block is set:
 		max age of event-block != age of event-block
 		stop
 
+	# Ezeket az adatokat keressük, növények, ércek, fák stb...
 	if any:
 		event-block is tagged with tag "minecraft:logs"
 		event-block is tagged with tag "paper:ores"
@@ -27,9 +32,15 @@ on break with priority highest:
 	then:
 		give_money_and_feedback(player, event-block, 10 ticks)
 
+# Egy helyi funkció, mert csunyán nézne ki a kód, ha ez nem lenne
 local function give_money_and_feedback(p: player, obj: object, duration: timespan):
+
+	# Kiszámoljuk a random összeget
 	set {_random_money} to calculate_money({_p}, {_obj})
+	# Ha sikerült kiszámolni, folytatjuk
 	{_random_money} is set
 
+	# Hozzáadjuk a játékos egyenlegéhez az előbb generált összeget
 	add {_random_money} to {egyenleg::%uuid of {_p}%}
+	# Mutatunk egy hologrammot, ezzel is jelezve a szerzett pénz mennyiségét
 	show_text_display(location of {_obj}, format_balance({_random_money}), {_duration})

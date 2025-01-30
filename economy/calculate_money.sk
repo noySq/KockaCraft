@@ -1,14 +1,18 @@
 function calculate_money(p: player, obj: object) :: number:
 
+	# Ha nincs elmentve a "dupe" adat, akkor folytatjuk
 	set {_nbt} to nbt compound of {_obj}
-
 	if byte tag "dupe" of {_nbt} is not set:
 
-		set {_economy::chance} to yaml value "server.economy.chance-to-get-money" from "global-config"
-		set {_economy::min} to yaml value "server.economy.min-money" from "global-config"
-		set {_economy::max} to yaml value "server.economy.max-money" from "global-config"
+		# Értékek felvétele
+		set {_economy::chance} to {config::economy::money::chance}
+		set {_economy::min} to {config::economy::money::minimum}
+		set {_economy::max} to {config::economy::money::maximum}
 
+		# x% esély
 		if chance of {_economy::chance}:
+			# Egy random number-t (0.00) generálunk
 			set {_random_money} to random number between {_economy::min} and {_economy::max}
 
+	# Előbb létrehozott számot visszadobjuk
 	return {_random_money}

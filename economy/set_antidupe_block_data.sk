@@ -1,4 +1,5 @@
 on place:
+	# Ezeket az adatokat keressük, növények, ércek, fák stb...
 	if any:
 		event-block is tagged with tag "minecraft:logs"
 		event-block is tagged with tag "paper:ores"
@@ -9,5 +10,7 @@ on place:
 		event-block = sugar cane
 		
 	then:		
+		# Beállítunk egy bájtot, ezzel is jelezve, hogy ezt a blockot egy játékos rakta le
+		# és nem természetesen generálódott
 		set {_nbt} to nbt compound of event-block	
 		set byte tag "dupe" of {_nbt} to 0
