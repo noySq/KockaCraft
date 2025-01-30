@@ -1,4 +1,2 @@
 command /test:
     trigger:
-
-        loop yaml node keys "messages.tablist.header" from "server-config":
