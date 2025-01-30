@@ -1,13 +1,20 @@
 function ranks_list(p: player):
 
+	# Ez valószínűleg egy olyan eset, ami soha nem fog megtörténni
+	# De lekezeljük, mert miért ne
 	if size of indices of {rank::*} = 0:
-		send server_feedback("warning", "&6Egy játékosnak sincs rangja!") to {_p}
+		send server_feedback("warning", {config::ranks::message::nobody-has-rank}) to {_p}
 		stop
 
+	# Végig megyünk a rang listán
 	loop indices of {rank::*}:
-		#{_player} isn't op
 
+		# Ha a játékos nem egy Admin, akkor folytatjuk
+		{_player} isn't op
+
+		# Kivesszük az adatokat
 		set {_expire} to unix date of {rank::%loop-value%::expire} ? "&cVégleges"
 		set {_target} to loop-value parsed as offlineplayer
 
-		send server_feedback("casual", "%display_name({_target})% &f- ß%{_expire}%") to {_p}
+		# Majd kiiratjuk
+		send server_feedback("casual", {config::ranks::message::rank-list-format}) to {_p}

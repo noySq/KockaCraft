@@ -2,7 +2,7 @@ function ranks_remove(target: offlineplayer, p: player = "CONSOLE" parsed as off
 
 	# Ha nincs rangja, cancel
 	if {rank::%uuid of {_target}%} is not set:
-		send server_feedback("error", "&4%display_name({_target})% &cnem rendelkezik ranggal!") to {_p}
+		send server_feedback("error", {config::ranks::message::has-no-rank}) to {_p}
 		stop
 
 	# Előbb kivesszük a Team-ből
@@ -17,5 +17,5 @@ function ranks_remove(target: offlineplayer, p: player = "CONSOLE" parsed as off
 	#execute console command "/lp user %{_target}% clear"
 	#setTablistName({_target})
 
-	server_log("rank", "%display_name({_p})% &felvette %display_name({_target})% &frangját!")
-	send server_feedback("warning", "%display_name({_p})% &felvette a rangod!") to {_target}
+	server_log("rank", {config::ranks::message::rank-removed-from})
+	send server_feedback("warning", {config::ranks::message::rank-removed}) to {_target}

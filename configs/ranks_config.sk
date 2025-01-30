@@ -1,0 +1,20 @@
+on load:
+
+	# Hibák
+	set {config::ranks::message::already-exist} to "%colored {_prefix}% &crang már létezik!"
+	set {config::ranks::message::not-exist} to "&4%{_rank}% &cnem létezik!"
+	set {config::ranks::message::never-played} to "&4%{_target}% &cmég nem járt a szerveren!"
+	set {config::ranks::message::has-no-rank} to "&4%display_name({_target})% &cnem rendelkezik ranggal!"
+
+	# Casual értesítés a játékosnak ({_target})
+	set {config::ranks::message::got-rank} to "%display_name({_p})% &fadott neked egy %{_prefix}% &frangot!"
+	set {config::ranks::message::rank-removed} to "%display_name({_p})% &felvette a rangod!"
+	set {config::ranks::message::expiration-date} to "&fA rang lejárati dátuma: &6%{_expire_date}%"
+	set {config::ranks::message::nobody-has-rank} to "&6Egy játékosnak sincs rangja!"
+	set {config::ranks::message::rank-list-format} to "%display_name({_target})% &f- ß%{_expire}%"
+
+	# Admin log
+	set {config::ranks::message::rank-given-to} to "%display_name({_p})% &fadott egy %{_prefix}% &frangot neki: %display_name({_target})%&f!"
+	set {config::ranks::message::rank-created} to "%display_name({_p})% &flétrehozta a(z) %colored {_prefix}% &frangot!"
+	set {config::ranks::message::rank-deleted} to "%display_name({_p})% &fkitörölte a(z) %colored {_prefix}% &frangot!"
+	set {config::ranks::message::rank-removed-from} to "%display_name({_p})% &felvette %display_name({_target})% &frangját!"

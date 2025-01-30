@@ -2,12 +2,12 @@ function ranks_add(p: player, target: offlineplayer, rank: text, time_for: times
 
 	# Ha nem létezik a rang, cancel
 	if {ranks::%{_rank}%::name} is not set:
-		send server_feedback("error", "&cRang &4%{_rank}% &cnem létezik!") to {_p}
+		send server_feedback("error", {config::ranks::message::not-exist}) to {_p}
 		stop
 
 	# Ha a {_target} nem volt még fent, cancel
 	if {_target} has not played before:
-		send server_feedback("error", "&4%{_target}% &cmég nem járt a szerveren!") to {_p}
+		send server_feedback("error", {config::ranks::message::never-played}) to {_p}
 		stop
 
 	# Odaadjuk a rangot a {_target}-nek
@@ -29,7 +29,7 @@ function ranks_add(p: player, target: offlineplayer, rank: text, time_for: times
 
 	set {_prefix} to colored {ranks::%{_rank}%::prefix}
 
-	server_log("rank", "%display_name({_p})% &fadott egy %{_prefix}% &frangot neki: %display_name({_target})%&f!")
+	server_log("rank", {config::ranks::message::rank-given-to})
 
 	# Ha {_target} elérhető, értesítjük róla
 	if {_target} is online:
@@ -37,9 +37,9 @@ function ranks_add(p: player, target: offlineplayer, rank: text, time_for: times
 		#setTablistName({_jatekos})
 
 		send "" to {_target}
-		send server_feedback("casual", "%display_name({_p})% &fadott neked egy %{_prefix}% &frangot!") to {_target}
+		send server_feedback("casual", {config::ranks::message::got-rank}) to {_target}
 
 		if {_time_for} > 0 seconds:
-			send server_feedback("warning", "&fA rang lejárati dátuma: &6%{_expire_date}%") to {_target}
+			send server_feedback("warning", {config::ranks::message::expiration-date}) to {_target}
 
 		send "" to {_target}

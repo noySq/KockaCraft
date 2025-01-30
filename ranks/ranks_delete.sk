@@ -2,7 +2,7 @@ function ranks_delete(p: player, rank: text):
 
 	# Ha nem létezik a rang, cancel
 	if {ranks::%{_rank}%::name} is not set:
-		send server_feedback("error", "&4%{_rank}% &crang nem létezik!") to {_p}
+		send server_feedback("error", {config::ranks::message::not-exist}) to {_p}
 		stop
 
 	# Prefixet előre lekérdezzük, mert törlés után nehéz lenne
@@ -22,4 +22,4 @@ function ranks_delete(p: player, rank: text):
 	delete {ranks::%{_rank}%::*}
 	delete {ranks::%{_rank}%}
 
-	server_log("rank", "%display_name({_p})% &fkitörölte a(z) %colored {_prefix}% &frangot!")
+	server_log("rank", {config::ranks::message::rank-deleted})

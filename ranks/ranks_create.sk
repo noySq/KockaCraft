@@ -2,7 +2,7 @@ function ranks_create(p: player, rank: text, weight: text, prefix: text, chat_co
 
 	# Ha van már ilyen rang, cancel
 	if {ranks::%{_rank}%::name} is set:
-		send server_feedback("error", "%colored {_prefix}% &crang már létezik!") to {_p}
+		send server_feedback("error", {config::ranks::message::already-exist}) to {_p}
 		stop
 
 	# Elmentjük a rang adatait
@@ -13,4 +13,4 @@ function ranks_create(p: player, rank: text, weight: text, prefix: text, chat_co
 
 	ranks_team_create({_rank})
 
-	server_log("rank", "%display_name({_p})% &flétrehozta a(z) %colored {_prefix}% &frangot!")
+	server_log("rank", {config::ranks::message::rank-created})
