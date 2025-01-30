@@ -7,11 +7,8 @@ command /world [<text>] [<text>] [<text>]:
 	executable by: console and players
 	usage: &f/world 
 	description: Világ kezelő
-	permission: admin
+	permission: world
 	trigger:
-
-		if check_permission(executor, "world", "admin-commands") = false:
-			stop
 
 		if arg-1 = "letrehoz":
 

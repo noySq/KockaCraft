@@ -1,8 +1,0 @@
-function check_permission(p: player, permission: text, config-node: text, config-file: text = "global-config") :: boolean:
-
-	set {_permission-to-check} to yaml value "permissions.%{_config-node}%.%{_permission}%" from {_config-file}
-
-	if {_p} has permission {_permission-to-check}:
-		return true
-
-	return false

@@ -4,11 +4,8 @@ command /restart [<integer>] [<text>]:
 	executable by: console and players
 	usage: &f/restart <másodperc> <indok>
 	description: Szerver újraindítása visszaszámlálóval
-	permission: admin
+	permission: restart
 	trigger:
-
-		if check_permission(executor, "restart", "admin-commands") = false:
-			stop
 
 		if arg-1 is not set:
 			send server_feedback("error", "&cNem adtál meg időtartamot!")

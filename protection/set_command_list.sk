@@ -16,9 +16,9 @@ on load:
 on send command list:
 	
 	# Fentebb említett jogosultság miatt cancel
-	if check_permission(player, "bypass-command-list", "command-list") = true:
+	if player has permission "admin":
 		stop
-	
+
 	# Játékosok számára látható parancs lista beállítása
 	set command list to {-commandlist::*}
 
@@ -29,13 +29,13 @@ on command:
 		stop
 
 	# Fentebb említett jogosultság miatt cancel
-	if check_permission(executor, "bypass-command-list", "command-list") = true:
+	if executor has permission "admin":
 		stop
 
 	# Ha nincs benne a listában a parancs amit futtatni szeretne, akkor cancel
 	if {-commandlist::*} doesn't contain command:
 
 		set {_command} to command
-
 		send server_feedback("warning", {config::global::server::message::unknown-command})
+
 		cancel event

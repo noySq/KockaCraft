@@ -5,11 +5,8 @@ command /vanish:
 	executable by: players
 	usage: &f/vanish
 	description: Eltünés a játékosok elől
-	permission: admin
+	permission: vanish
 	trigger:
-
-		if check_permission(executor, "vanish", "admin-commands") = false:
-			stop
 
 		if (metadata "vanish" of player) is not set:
 

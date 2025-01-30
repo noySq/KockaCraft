@@ -22,7 +22,7 @@ function server_log(type: text, message: text):
 
 	loop all players:
 
-		check_permission(loop-player, "log.receive", "log") = true
+		loop-player has permission "admin"
 		add loop-player to {_send_to::*}
 
 		send {_final_msg} to {_send_to::*}

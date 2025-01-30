@@ -4,11 +4,8 @@ command /invsee [<offlineplayer>]:
 	executable by: players
 	usage: &f/invsee &a<játékos>
 	description: Játékos leltárjának megnyitása
-	permission: admin
+	permission: invsee
 	trigger:
-
-		if check_permission(executor, "invsee", "admin-commands") = false:
-			stop
 
 		if arg-1 is not online:
 			send server_feedback("error", "&4%arg-1% &cnem elérhető!")

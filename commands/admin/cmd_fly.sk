@@ -4,11 +4,8 @@ command /fly [<offlineplayer>]:
 	executable by: players
 	usage: &f/fly
 	description: Játékos repülési módjának kapcsolása
-	permission: admin
+	permission: fly
 	trigger:
-
-		if check_permission(executor, "fly", "admin-commands") = false:
-			stop
 
 		if arg-1 is not set:
 

@@ -1,6 +1,6 @@
 function get_maximum_homes(p: player) :: integer:
 
-	if check_permission({_p}, "more-home-permission", "home") = false:
+	if {_p} has permission "home.more-max-home":
 		return yaml value "permissions.home.more-home-num" from "global-config"
 
 	else:

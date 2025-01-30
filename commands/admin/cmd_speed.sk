@@ -4,11 +4,8 @@ command /speed [<number>] [<offlineplayer>]:
 	executable by: players
 	usage: &f/speed <0-1>
 	description: Sebesség állítása
-	permission: admin
+	permission: speed
 	trigger:
-
-		if check_permission(executor, "speed", "admin-commands") = false:
-			stop
 	
 		if arg-1 is not set:
 			send server_feedback("error", "&cAdj meg egy számot 0 és 1 között!")

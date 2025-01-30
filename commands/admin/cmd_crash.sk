@@ -4,11 +4,8 @@ command /crash [<offline player>]:
 	executable by: console and players
 	usage: &f/crash <játékos>
 	description: Játékos kicrasheltetése
-	permission: admin
+	permission: crash
 	trigger:
-
-		if check_permission(executor, "crash", "admin-commands") = false:
-			stop
 
 		if arg-1 is online:
 
