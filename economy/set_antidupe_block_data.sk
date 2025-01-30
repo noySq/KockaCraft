@@ -8,8 +8,8 @@ on place:
 		event-block = pumpkin
 		event-block = melon
 		event-block = sugar cane
-		
-	then:		
+
+	then:
 		# Beállítunk egy bájtot, ezzel is jelezve, hogy ezt a blockot egy játékos rakta le
 		# és nem természetesen generálódott
 		set {_nbt} to nbt compound of event-block	

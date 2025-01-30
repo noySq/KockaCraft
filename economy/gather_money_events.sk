@@ -13,7 +13,7 @@ on break with priority highest:
 	# Ha valami már megállította az eventet, itt is megállunk
 	if event is cancelled:
 		stop
-		
+
 	# Növények esetében, ha nincs teljesen kifejlődve, akkor megállunk
 	if age of event-block is set:
 		max age of event-block != age of event-block
