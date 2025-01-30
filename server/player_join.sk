@@ -5,8 +5,8 @@ on join:
 
 	# Ha a játékos már játszott
 	if player has played before:
-		send action bar (yaml value "messages.join.played-before" from "server-config") to all players
+		send action bar server_feedback("casual", {config::server::message::join}, true) to all players
 
 	# Játékos első csatlakozása
 	else:
-		send action bar (yaml value "messages.join.didnt-played-before" from "server-config") to all players
+		send action bar server_feedback("casual", {config::server::message::new-join}, true) to all players

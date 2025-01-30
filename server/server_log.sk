@@ -12,11 +12,11 @@ function server_log(type: text, message: text):
 		{_type} = "world"
 
 	then:
-		set {_color} to colored (yaml value "server.texts.server-color" from "global-config")
+		set {_color} to colored {config::global::color::main}
 		replace every "ß" in {_message} with {_color}
 
-		set {_prefix} to yaml value "messages.log.%{_type}%" from "server-config"
-		set {_final_msg} to "%{_prefix}% &r%{_message}%"
+		set {_prefix} to {config::server::message::log::%{_type}%}
+		set {_final_msg} to "%{_prefix}% &r%colored {_message}%"
 
 	add console to {_send_to::*}
 

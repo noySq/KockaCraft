@@ -1,12 +1,12 @@
 on load:
 
-    set {config::world::message::already-exist} to "ß%{_world}% &cvilág be van töltve vagy már létezik!"
-    set {config::world::message::not-exist} to "ß%{_world}% &cvilág nincs betöltve vagy nem létezik!"
+	set {config::world::message::already-exist} to "ß%{_world}% &cvilág be van töltve vagy már létezik!"
+	set {config::world::message::not-exist} to "ß%{_world}% &cvilág nincs betöltve vagy nem létezik!"
 
-    set {config::world::message::succ-created} to "ß%{_world}% &fvilág létrehozva!"
-    set {config::world::message::succ-deleted} to "ß%{_world}% &fvilág kitörölve!
+	set {config::world::message::succ-created} to "ß%{_world}% &fvilág létrehozva!"
+	set {config::world::message::succ-deleted} to "ß%{_world}% &fvilág kitörölve!
 
-    set {config::world::message::regenerating} to "ß%{_world}% &fvilág újragenerálása..."
-    set {config::world::message::regenerating-warning} to "&6A ß%{_world}% &6világ újragenerálódik, ezért el lettél teleportálva!"
+	set {config::world::message::regenerating} to "ß%{_world}% &fvilág újragenerálása..."
+	set {config::world::message::regenerating-warning} to "&6A ß%{_world}% &6világ újragenerálódik, ezért el lettél teleportálva!"
 
-    set {config::world::message::teleporting} to "&fTeleportálás a(z) ß%{_world}% &fvilágba!"
+	set {config::world::message::teleporting} to "&fTeleportálás a(z) ß%{_world}% &fvilágba!"

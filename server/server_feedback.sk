@@ -7,11 +7,11 @@ function server_feedback(type: string, message: text, silent: boolean = false) :
 		{_type} = "error"
 
 	then:
-		set {_color} to colored (yaml value "server.texts.server-color" from "global-config")
+		set {_color} to colored {config::global::color::main}
 		replace every "ß" in {_message} with {_color}
 
 		if {_silent} = false:
-			play sound (yaml value "messages.feedback.sound.%{_type}%" from "server-config") with volume 0.2 to {_p}
+			play sound {config::server::sound::feedback::%{_type}%} with volume 0.2 to {_p}
 
-		set {_prefix} to yaml value "messages.feedback.message.%{_type}%" from "server-config"
-		return "%{_prefix}% &r%{_message}%"
+		set {_prefix} to {config::server::message::feedback::%{_type}%}
+		return "%{_prefix}% &r%colored {_message}%"

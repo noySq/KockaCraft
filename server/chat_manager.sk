@@ -5,22 +5,25 @@ on async chat:
 
 	# Ha nem telt el 1 másodperc két üzenet között, cancel
 	if anti_spam(player, 1 second) = true:
-		send server_feedback("warning", "&6Várj egy pillanatot!")
+		send server_feedback("warning", {config::server::message::wait})
 		cancel event
 
 	# Megnézzük, hogy az üzenet egy link, ha igen akkor cancel
 	if async chat message matches {@anti-url-regex}:
-		send server_feedback("warning", "&6Nem küldhetsz semmilyen linket a chatre!")
+		send server_feedback("warning", {config::server::message::no-link})
 		cancel event
 
 	set {_p} to player
 	set {_rank} to {rank::%uuid of {_p}%}
 
-	# Beállítjuk a formatot
+	# Beállítjuk az írott szöveg színét
 	set {_chat_color} to {ranks::%{_rank}%::chat_color} ? "&f"
-	set {_format::1} to text component from "%display_name({_p})% &8> "
+
+	# Beállítjuk a formatot
+	set {_format::1} to text component from {config::server::chat::player-format}
 	set {_format::2} to colored "%{_chat_color}%%async chat message%"
 
+	# Mergeljük a két komponenst
 	set {_format} to merge components {_format::*}
 
 	# [item] kilinkeli a tárgyat a chatre
@@ -40,5 +43,5 @@ on async chat:
 
 on command:
 	if anti_spam(player, 1 second) = true:
-		send server_feedback("warning", "&6Várj egy pillanatot!")
+		send server_feedback("warning", {config::server::message::wait})
 		cancel event
