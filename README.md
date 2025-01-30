@@ -1,6 +1,5 @@
 
-![Logo](https://cdn.discordapp.com/attachments/1200158049810251787/1201140146649702492/server-icon_1.png?ex=6790e2ef&is=678f916f&hm=ca577c7dc0727bfa038021eccb90db166f31068a0866b2885c97c68af2bc5d10&)
-
+![Logo](https://cdn.discordapp.com/attachments/1200158049810251787/1201140146649702492/server-icon_1.png?ex=679cc06f&is=679b6eef&hm=51721253c97c28bf8d99117ea36774aa217d8d925b0604d2c5cffdda2e986b24&)
 
 # KOCKACRAFT
 
