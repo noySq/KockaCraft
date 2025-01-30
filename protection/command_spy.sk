@@ -12,7 +12,7 @@ on command:
 			command sender != loop-player
 		
 		then:
-			server_log("cmdspy", "%display_name(player)% &8> /&2%complete command%")
+			server_log("cmdspy", {config::protection::message::cmdspy::log})
 
 # Kilépésnél kikapcsoljuk a CommandSpy-t
 on quit:

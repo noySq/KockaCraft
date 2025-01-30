@@ -35,5 +35,5 @@ on command:
 	# Ha nincs benne a listában a parancs amit futtatni szeretne, akkor cancel
 	if {-commandlist::*} doesn't contain command:
 
-		send server_feedback("warning", "&6Ismeretlen parancs! &7(/%command%&7)")
+		send server_feedback("warning", {config::global::server::message::unknown-command})
 		cancel event

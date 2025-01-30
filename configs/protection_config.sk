@@ -1,0 +1,6 @@
+on load:
+
+	set {config::protection::message::cmdspy::log} to "%display_name(player)% &8> /&2%complete command%"
+
+	set {config::protection::message::log::chat-format} to "%{_p}%: %{_message}%"
+	set {config::protection::message::log::command-format} to "%{_p}%: /%{_command}%"
