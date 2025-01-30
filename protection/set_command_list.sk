@@ -35,7 +35,6 @@ on command:
 	# Ha nincs benne a listában a parancs amit futtatni szeretne, akkor cancel
 	if {-commandlist::*} doesn't contain command:
 
-		set {_command} to command
-		send server_feedback("warning", {config::global::server::message::unknown-command})
-
+		# Kókány szar módszer, de megteszi
+		send server_feedback("warning", "%{config::global::server::message::unknown-command}% &7&o%command%")
 		cancel event
