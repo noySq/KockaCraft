@@ -1,0 +1,3 @@
+on load:
+
+	set {config::command::admin::broadcast::permission} to "broadcast"
