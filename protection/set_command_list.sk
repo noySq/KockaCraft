@@ -36,5 +36,5 @@ on command:
 	if {-commandlist::*} doesn't contain command:
 
 		# Kókány szar módszer, de megteszi
-		send server_feedback("warning", "%{config::global::server::message::unknown-command}% &7&o%command%")
+		send server_feedback("warning", "%{config::global::server::message::unknown-command}% &7&o/%command%")
 		cancel event
