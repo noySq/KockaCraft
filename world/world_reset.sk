@@ -3,9 +3,9 @@ function world_reset(world: text):
 	loop all players where [input is in world({_world})]:
 		
 		spawn_teleport(loop-player)
-		send server_feedback("warning", yaml value "messages.regenerating-warning" from "world-config") to loop-player
+		send server_feedback("warning", {config::world::message::regenerating-warning}) to loop-player
 		
-	server_log("world", yaml value "messages.regenerating" from "world-config")
+	server_log("world", {config::world::message::regenerating})
 		
 	set {_env} to environment of {_world}
 		

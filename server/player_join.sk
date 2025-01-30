@@ -5,10 +5,8 @@ on join:
 
 	# Ha a játékos már játszott
 	if player has played before:
-		send action bar "%display_name(player)% &acsatlakozott!" to all players
+		send action bar (yaml value "messages.join.played-before" from "server-config") to all players
 
 	# Játékos első csatlakozása
 	else:
-		send action bar "%display_name(player)% &felőször jár itt! &8[#%number of offline players%]" to all players
-
-	#spawn(player)
+		send action bar (yaml value "messages.join.didnt-played-before" from "server-config") to all players

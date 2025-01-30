@@ -1,7 +1,7 @@
 on server list ping:
 
-	set {_motd::line::1} to text_center(mini message from yaml value "server.texts.motd" from "global-config", 154)
-	set {_motd::line::2} to text_center(mini message from yaml value "server.texts.motd" from "global-config", 154)
+	set {_motd::line::1} to text_center(mini message from (yaml value "server.motd.line-1" from "global-config"), 154)
+	set {_motd::line::2} to text_center(mini message from (yaml value "server.motd.line-2" from "global-config"), 154)
 	set {_motd::version} to yaml value "server.texts.version" from "global-config"
 
 	set the motd to colored "%{_motd::line::1}%%nl%%{_motd::line::2}%"

@@ -1,45 +1,22 @@
-options:
-	admin: &c&lADMIN
-	rank: &3&lRANG
-	protection: &4&lVÉDELEM
-	cmdspy: &2&lCMDSPY
-	crash: &9&lCRASH
-	mute: &6&lMUTE
-	afk: &5&lAFK
-	helpop: &e&lHELPOP
-	world: &7&lWORLD
-
 function server_log(type: text, message: text):
 
-	set {_color} to colored (yaml value "server.texts.server-color" from "global-config")
-	replace every "ß" in {_message} with {_color}
+	if any:
+		{_type} = "admin"
+		{_type} = "rank"
+		{_type} = "protection"
+		{_type} = "cmdspy"
+		{_type} = "crash"
+		{_type} = "mute"
+		{_type} = "afk"
+		{_type} = "helpop"
+		{_type} = "world"
 
-	if {_type} = "admin":
-		set {_final_msg} to "{@admin} &8| %{_message}%"
+	then:
+		set {_color} to colored (yaml value "server.texts.server-color" from "global-config")
+		replace every "ß" in {_message} with {_color}
 
-	if {_type} = "rank":
-		set {_final_msg} to "{@rank} &8| %{_message}%"
-
-	if {_type} = "protection":
-		set {_final_msg} to "{@protection} &8| %{_message}%"
-
-	if {_type} = "cmdspy":
-		set {_final_msg} to "{@cmdspy} &8| %{_message}%"
-
-	if {_type} = "crash":
-		set {_final_msg} to "{@crash} &8| %{_message}%"
-
-	if {_type} = "mute":
-		set {_final_msg} to "{@mute} &8| %{_message}%"
-
-	if {_type} = "afk":
-		set {_final_msg} to "{@afk} &8| %{_message}%"
-
-	if {_type} = "helpop":
-		set {_final_msg} to "{@helpop} &8| %{_message}%"
-		
-	if {_type} = "world":
-		set {_final_msg} to "{@world} &8| %{_message}%"
+		set {_prefix} to yaml value "messages.log.%{_type}%" from "server-config"
+		set {_final_msg} to "%{_prefix}% &r%{_message}%"
 
 	add console to {_send_to::*}
 

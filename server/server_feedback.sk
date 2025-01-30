@@ -1,24 +1,17 @@
-options:
-	casual-format:  "&7&l> &8| &r%{_message}%"
-	success-format: "&a&l✔ &8| &r%{_message}%"
-	warning-format: "&6⚠ &8| &r%{_message}%"
-	error-format:   "&c&l✖ &8| &r%{_message}%"
-
 function server_feedback(type: string, message: text, silent: boolean = false) :: text:
 
-	set {_color} to colored (yaml value "server.texts.server-color" from "global-config")
-	replace every "ß" in {_message} with {_color}
+	if any:
+		{_type} = "casual"
+		{_type} = "success"
+		{_type} = "warning"
+		{_type} = "error"
 
-	if {_type} = "casual":
-		play sound "block.note_block.pling" with volume 0.3 to {_p} if {_silent} = false
-		return {@casual-format}
+	then:
+		set {_color} to colored (yaml value "server.texts.server-color" from "global-config")
+		replace every "ß" in {_message} with {_color}
 
-	if {_type} = "success":
-		return {@success-format}
+		if {_silent} = false:
+			play sound (yaml value "messages.feedback.sound.%{_type}%" from "server-config") with volume 0.2 to {_p}
 
-	if {_type} = "warning":
-		return {@warning-format}
-
-	if {_type} = "error":
-		play sound "BLOCK_ANVIL_LAND" with volume 0.1 to {_p} if {_silent} = false
-		return {@error-format}
+		set {_prefix} to yaml value "messages.feedback.message.%{_type}%" from "server-config"
+		return "%{_prefix}% &r%{_message}%"

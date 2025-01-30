@@ -1,10 +1,10 @@
 function world_delete(world: text):
 
 	if {_world} is not loaded:
-		server_log("world", yaml value "messages.not-exist" from "world-config")
+		server_log("world", {config::world::message::not-exist})
 		stop
 
 	unload world {_world}
 	delete world file for {_world}
-	
-	server_log("world", yaml value "messages.successfully-deleted" from "world-config")
+
+	server_log("world", {config::world::message::succ-deleted})

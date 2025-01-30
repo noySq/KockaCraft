@@ -1,8 +1,8 @@
 function world_teleport(p: player, world: text):
 
 	if {_world} is not loaded:
-		send server_feedback("error", yaml value "messages.not-exist" from "world-config") to {_p}
+		send server_feedback("error", {config::world::message::not-exist}) to {_p}
 		stop
 		
 	teleport {_p} to spawn of world({_world})
-	send server_feedback("casual", yaml value "messages.teleporting" from "world-config") to {_p}
+	send server_feedback("casual", {config::world::message::teleporting}) to {_p}
