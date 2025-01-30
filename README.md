@@ -44,7 +44,4 @@ SkBee 3.8.1
 ```bash
 skript-reflect 2.6
 ```
-```bash
-skript-yaml 1.6
-```
 
