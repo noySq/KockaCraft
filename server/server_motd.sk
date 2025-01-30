@@ -1,7 +1,7 @@
 on server list ping:
 
-	set {_motd::line::1} to text_center(mini message from {config::global::server::motd}, 154)
-	set {_motd::line::2} to text_center(mini message from {config::global::server::domain}, 154)
+	set {_motd::line::1} to text_center(mini message from {config::global::server::motd}, 127)
+	set {_motd::line::2} to text_center(mini message from {config::global::server::domain}, 124)
 	set {_motd::version} to {config::global::server::version}
 
 	set the motd to colored "%{_motd::line::1}%%nl%%{_motd::line::2}%"
