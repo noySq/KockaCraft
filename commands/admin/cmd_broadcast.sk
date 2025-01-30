@@ -5,7 +5,7 @@ command /broadcast [<text>]:
 	executable by: console and players
 	usage: &f/bc <üzenet>
 	description: Globális üzenet küldése a chatre
-	permission: %{config::command::admin::broadcast::permission}%
+	permission: {config::command::admin::broadcast::permission}
 	trigger:
 
 		if check_permission(executor, "broadcast", "admin-commands") = false:

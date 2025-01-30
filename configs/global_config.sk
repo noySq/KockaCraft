@@ -8,4 +8,4 @@ on load:
 	set {config::global::server::domain} to "<gray>mc.%{global::server::motd}%<gray>.hu"
 	set {config::global::server::version} to "1.19.4 - 1.21.4"
 
-	set {config::global::server::message::unknown-command} to "&6Ismeretlen parancs! &7(/%command%&7)"
+	set {config::global::server::message::unknown-command} to "&6Ismeretlen parancs! &7(/%{_command}%&7)"

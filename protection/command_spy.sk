@@ -12,6 +12,7 @@ on command:
 			command sender != loop-player
 		
 		then:
+			set {_command} to full command
 			server_log("cmdspy", {config::protection::message::cmdspy::log})
 
 # Kilépésnél kikapcsoljuk a CommandSpy-t
