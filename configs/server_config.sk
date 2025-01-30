@@ -6,8 +6,8 @@ on load:
 	set {config::server::message::no-link} to "&6Nem küldhetsz semmilyen linket a chatre!"
 
 	# server/player_join.sk | Csatlakozás szöveg
-	set {config::server::message::join} to "%display_name(player)% &acsatlakozott"
-	set {config::server::message::new-join} to "%display_name(player)% ßelőször jár itt! &8[##%number of offline players%&8]"
+	set {config::server::message::join} to "&acsatlakozott"
+	set {config::server::message::new-join} to "ßelőször jár itt! &8[#%number of offline players%&8]"
 
 	# server/server_feedback.sk | Format
 	set {config::server::message::feedback::casual} to "&7&l> &8|"
