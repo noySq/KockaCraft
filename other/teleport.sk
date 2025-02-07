@@ -1,0 +1,4 @@
+function teleport(p: player, loc: location):
+
+    teleport {_p} to {_loc} retaining passengers
+    send server_feedback("casual", "&fTeleportálás...") to {_p}

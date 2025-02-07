@@ -8,6 +8,4 @@ function spawn_teleport(p: player):
 	add {_randomX} to x-coordinate of {_loc}
 	add {_randomZ} to z-coordinate of {_loc}
 
-	teleport {_p} to {_loc}
-	
-	send server_feedback("casual", "&fTeleportálás a spawnra...") to {_p}
+	teleport({_p}, {_loc})
