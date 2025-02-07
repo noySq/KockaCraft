@@ -1,7 +1,12 @@
+options:
+	already-exist: "ß%{_world}% &cvilág nincs betöltve vagy nem létezik!"
+	successfully-created: "ß%{_world}% &fvilág sikeresen &alétrehozva&f!"
+	failed-to-create: "ß%{_world}% &cvilág létrehozása meghíúsult!"
+
 function world_create(world: text, env: environment):
 
 	if {_world} is loaded:
-		server_log("world", {config::world::message::already-exist})
+		server_log("world", {@already-exist})
 		stop
 
 	set {_w} to world creator named {_world}
@@ -9,4 +14,7 @@ function world_create(world: text, env: environment):
 	set environment option of {_w} to {_env}
 	load world from creator {_w}
 
-	server_log("world", {config::world::message::succ-created})
+	if {_world} is loaded:
+		server_log("world", {@successfully-created})
+	else:
+		server_log("world", {@failed-to-create})

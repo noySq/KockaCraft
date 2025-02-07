@@ -1,11 +1,15 @@
+options:
+	regenerating-warning: "&6A ß%{_world}% &6világ újragenerálódik, ezért el lettél teleportálva!"
+	regenerating: "ß%{_world}% &fvilág újragenerálása..."
+
 function world_reset(world: text):
 	
 	loop all players where [input is in world({_world})]:
 		
 		spawn_teleport(loop-player)
-		send server_feedback("warning", {config::world::message::regenerating-warning}) to loop-player
+		send server_feedback("warning", {@regenerating-warning}) to loop-player
 		
-	server_log("world", {config::world::message::regenerating})
+	server_log("world", {@regenerating})
 		
 	set {_env} to environment of {_world}
 		
