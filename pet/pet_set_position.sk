@@ -50,7 +50,6 @@ function pet_set_position(p: player):
 
 		# Vektor beállítása
 		set {_v} to vector({_x_offset}, {@distance-between-ground}, {_spacing_z})
-		set pitch of {_v} to 0
 
 		# Beállítjuk az entitás pozícióját
 		set display translation of loop-entity to {_v}

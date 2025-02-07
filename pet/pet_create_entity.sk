@@ -7,6 +7,7 @@ function pet_create_entity(p: player):
 		set display billboard of entity to vertical
 		set display view range of entity to 0.5
 		set display scale of entity to vector(0.5, 0.5, 0.5)
+		set pitch of entity to 0
 
 		# Valamiért csak ezzel lehet egyszerre több entitást
 		# a játékosra ültetni
