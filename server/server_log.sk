@@ -23,7 +23,7 @@ function server_log(type: text, message: text):
 		{_type} = "world"
 
 	then:
-		set {_color} to colored {config::global::color::main}
+		set {_color} to colored {config::color::main}
 		replace every "ß" in {_message} with {_color}
 
 		switch {_type}:

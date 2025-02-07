@@ -4,6 +4,6 @@ on load:
 	set {config::color::player} to "&7"
 
 	set {config::server::name} to "SZERVERNÉV"
-	set {config::server::motd} to "<gradient:#00aeff:#005dab><bold>%{global::server::name}%</gradient>"
-	set {config::server::domain} to "play.%{global::server::motd}%.hu"
+	set {config::server::motd} to "<gradient:#00aeff:#005dab><bold>%{config::server::name}%</gradient>"
+	set {config::server::domain} to "play.%{config::server::motd}%.hu"
 	set {config::server::version} to "1.19.4 - 1.21.4"

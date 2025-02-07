@@ -1,3 +1,6 @@
+options:
+	unknown-command: "&6Ismeretlen parancs! &7&o[/%command%]"
+
 on load:
 
 	# AuthMe dolgokat manuálisan hozzáadjuk, mivel nem Skript parancsok
@@ -36,5 +39,5 @@ on command:
 	if {-commandlist::*} doesn't contain command:
 
 		# Kókány szar módszer, de megteszi
-		send server_feedback("warning", "%{config::global::server::message::unknown-command}% &7&o[/%command%]")
+		send server_feedback("warning", {@unknown-command})
 		cancel event

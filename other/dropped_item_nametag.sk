@@ -9,7 +9,7 @@ on item merge:
 local function set_item_nametag(e: entity):
 
 	set {_amount} to item amount of item of {_e}
-	set {_color} to {config::global::color::main}
+	set {_color} to {config::color::main}
 
 	set {_m::1} to text component from "%{_color}%%{_amount}%&7x "
 

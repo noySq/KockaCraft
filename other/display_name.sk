@@ -10,6 +10,6 @@ function display_name(p: offlineplayer) :: text:
 	else:
 		set {_prefix} to ""
 
-	set {_player_name_color} to {config::global::color::player}
+	set {_player_name_color} to {config::color::player}
 
 	return colored "%{_prefix}%%{_player_name_color}%%{_p}%"

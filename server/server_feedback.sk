@@ -20,7 +20,7 @@ function server_feedback(type: string, message: text, silent: boolean = false) :
 		{_type} = "error"
 
 	then:
-		set {_color} to colored {config::global::color::main}
+		set {_color} to colored {config::color::main}
 		replace every "ß" in {_message} with {_color}
 
 		switch {_type}:
