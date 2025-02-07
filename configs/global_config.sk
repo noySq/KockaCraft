@@ -5,5 +5,5 @@ on load:
 
 	set {config::server::name} to "SZERVERNÉV"
 	set {config::server::motd} to "<gradient:#00aeff:#005dab><bold>%{config::server::name}%</gradient>"
-	set {config::server::domain} to "play.%{config::server::motd}%.hu"
+	set {config::server::domain} to "&7&oplay.%{config::server::name}%.hu"
 	set {config::server::version} to "1.19.4 - 1.21.4"
