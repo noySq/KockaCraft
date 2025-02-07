@@ -1,0 +1,56 @@
+options:
+	max-pet-in-one-row: 5
+	distance-behind-player: 1.25
+	distance-between-ground: -0.5
+	distance-between-pets: 0.5
+	distance-between-pet-rows: 0.75
+
+function pet_set_position(p: player):
+
+	# Lekérdezzük az eddig lehívott petek számát
+	set {_pet_num} to size of pet_get_player_pets({_p})
+	
+	# Ha nincs lehívva pet, akkor megállítjuk
+	if {_pet_num} <= 0:
+		stop
+
+	# Sor
+	set {_row} to 0
+
+	# Távolság
+	set {_spacing_z} to {@distance-behind-player}
+	set {_spacing_x} to {@distance-between-pets}
+
+	# Végigmegyünk a lehívott peteken
+	loop pet_get_player_pets({_p}):
+
+		# Az előző pet sorja
+		# Pontosan még én sem értem hogy MIÉRT és HOGYAN működik, de működik! XD
+		set {_row_before} to {_row}
+
+		# Ellenőrízzik, hogy megtelt-e a sor
+		# Ha megtelt, hozzáadunk egy új sort
+		if all:
+			mod( (loop-iteration - 1), {@max-pet-in-one-row} ) = 0
+			loop-iteration != 1
+		then:
+			add 1 to {_row}
+
+		# Kiszámoljuk, hogy hány pet van a jelenlegi sorban
+		set {_pets_in_current_row} to max(0, min( {@max-pet-in-one-row}, ( {_pet_num} - {_row} * {@max-pet-in-one-row} )))
+		
+		# Középre igazítás az X tengelyen
+		set {_total_row_width} to ( {_pets_in_current_row} - 1 ) * {_spacing_x}
+		set {_start_x} to (( {_total_row_width} / 2 ) * -1 )
+		set {_x_offset} to {_start_x} + ( mod(loop-iteration - 1, {@max-pet-in-one-row}) * {_spacing_x} ) 
+		
+		# Ha új sor került létrehozása, akkor módosítjuk a Z tengelyt
+		if {_row} > {_row_before}:
+			set {_spacing_z} to {@distance-behind-player} + ( {_row} * {@distance-between-pet-rows} )
+
+		# Vektor beállítása
+		set {_v} to vector({_x_offset}, {@distance-between-ground}, {_spacing_z})
+		set pitch of {_v} to 0
+
+		# Beállítjuk az entitás pozícióját
+		set display translation of loop-entity to {_v}

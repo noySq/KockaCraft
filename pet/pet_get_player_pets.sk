@@ -1,0 +1,9 @@
+function pet_get_player_pets(p: player) :: entities:
+
+    # Lekérdezzük, hogy milyen entitások ülnek a játékoson
+    # TODO: valami megkülönböztető jelzést (NBT) a peteknek
+    loop passengers of {_p}:
+        add loop-entity to {_pets::*}
+
+    # Visszadobjuk a peteket
+    return {_pets::*}

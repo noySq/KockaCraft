@@ -1,0 +1,8 @@
+function pet_delete_entity(p: player, e: entity):
+
+	# Lekérdezzük a lehívott peteket
+	loop pet_get_player_pets({_p}):
+
+		# Megöljük és kitöröljük ezeket az entitásokat
+		kill loop-entity
+		delete loop-entity
