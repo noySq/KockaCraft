@@ -1,4 +1,4 @@
-function pet_delete_entity(p: player, e: entity):
+function pet_delete_entity(p: player):
 
 	# Lekérdezzük a lehívott peteket
 	loop pet_get_player_pets({_p}):
