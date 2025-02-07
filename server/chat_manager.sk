@@ -1,16 +1,19 @@
 options:
 	anti-url-regex: "((http|ftp|https):\/\/)?[-a-zA-Z0-9@:%%._\+~##=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%%_\+.~##?&=]*)"
 
+	wait: "&6Várj egy pillanatot!"
+	link-not-allowed: "&6Nem küldhetsz semmilyen linket a chatre!"
+
 on async chat:
 
 	# Ha nem telt el 1 másodperc két üzenet között, cancel
 	if anti_spam(player, 1 second) = true:
-		send server_feedback("warning", {config::server::message::wait})
+		send server_feedback("warning", {@wait})
 		cancel event
 
 	# Megnézzük, hogy az üzenet egy link, ha igen akkor cancel
 	if async chat message matches {@anti-url-regex}:
-		send server_feedback("warning", {config::server::message::no-link})
+		send server_feedback("warning", {@link-not-allowed})
 		cancel event
 
 	set {_p} to player

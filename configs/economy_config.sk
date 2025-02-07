@@ -1,5 +1,0 @@
-on load:
-
-	set {config::economy::money::chance} to 50
-	set {config::economy::money::minimum} to 5
-	set {config::economy::money::maximum} to 30

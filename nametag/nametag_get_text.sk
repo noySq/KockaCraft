@@ -4,7 +4,7 @@ function nametag_get_text(p: player) :: texts:
 	set {_rank} to {rank::%uuid of {_p}%}
 
 	# Ha a játékos Admin, akkor legyen a szerver ikonja is benne
-	if {_p} is op:
+	if {_p} has permission "admin":
 		set {_icon} to "%nl%"
 	else:
 		set {_icon} to ""

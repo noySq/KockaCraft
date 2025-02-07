@@ -1,11 +1,9 @@
 on load:
 
-	set {config::global::color::main} to "<#00aeff>"
-	set {config::global::color::player} to "&7"
+	set {config::color::main} to "<#00aeff>"
+	set {config::color::player} to "&7"
 
-	set {config::global::server::name} to "SZERVERNÉV"
-	set {config::global::server::motd} to "<gradient:#00aeff:#005dab><bold>%{global::server::name}%</gradient>"
-	set {config::global::server::domain} to "play.%{global::server::motd}%.hu"
-	set {config::global::server::version} to "1.19.4 - 1.21.4"
-
-	set {config::global::server::message::unknown-command} to "&6Ismeretlen parancs!"
+	set {config::server::name} to "SZERVERNÉV"
+	set {config::server::motd} to "<gradient:#00aeff:#005dab><bold>%{global::server::name}%</gradient>"
+	set {config::server::domain} to "play.%{global::server::motd}%.hu"
+	set {config::server::version} to "1.19.4 - 1.21.4"

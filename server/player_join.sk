@@ -1,3 +1,7 @@
+options:
+	join-message: "%display_name(player)% &acsatlakozott!"
+	first-join-message: "%display_name(player)% ßelőször jár itt! &8[#%number of offline players%&8]"
+
 on join:
 
 	# Kikapcsoljuk a vanilla csatlakozási szöveget
@@ -5,8 +9,8 @@ on join:
 
 	# Ha a játékos már játszott
 	if player has played before:
-		send action bar server_feedback("casual", "%display_name(player)% %{config::server::message::join}%", true) to all players
+		send action bar server_feedback("casual", {@join-message}, true) to all players
 
 	# Játékos első csatlakozása
 	else:
-		send action bar server_feedback("casual", "%display_name(player)% %{config::server::message::new-join}%", true) to all players
+		send action bar server_feedback("casual", {@first-join-message}, true) to all players

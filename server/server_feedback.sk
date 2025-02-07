@@ -1,3 +1,16 @@
+options:
+	casual-prefix: "&7&l>"
+	casual-sound: "BLOCK.NOTE_BLOCK.PLING"
+
+	success-prefix: "&a&l✔"
+	success-sound: "BLOCK.NOTE_BLOCK.PLING" # Változtatni kell
+
+	warning-prefix: "&6⚠"
+	warning-sound: "BLOCK.NOTE_BLOCK.PLING" # Változtatni kell
+
+	error-prefix: "&c&l✖"
+	error-sound: "BLOCK_ANVIL_LAND"
+
 function server_feedback(type: string, message: text, silent: boolean = false) :: text:
 
 	if any:
@@ -10,8 +23,21 @@ function server_feedback(type: string, message: text, silent: boolean = false) :
 		set {_color} to colored {config::global::color::main}
 		replace every "ß" in {_message} with {_color}
 
-		if {_silent} = false:
-			play sound {config::server::sound::feedback::%{_type}%} with volume 0.2 to {_p}
+		switch {_type}:
+			case "casual":
+				set {_prefix} to {@casual-prefix}
+				set {_sound} to {@casual-sound}
+			case "success":
+				set {_prefix} to {@success-prefix}
+				set {_sound} to {@success-sound}
+			case "warning":
+				set {_prefix} to {@warning-prefix}
+				set {_sound} to {@warning-sound}
+			case "error":
+				set {_prefix} to {@error-prefix}
+				set {_sound} to {@error-sound}
 
-		set {_prefix} to {config::server::message::feedback::%{_type}%}
-		return "%{_prefix}% &r%colored {_message}%"
+		if {_silent} = false:
+			play sound {_sound} with volume 0.2 to {_p}
+
+		return "%{_prefix}% &8| &r%colored {_message}%"

@@ -1,3 +1,14 @@
+options:
+	admin-prefix: "&c&lADMIN"
+	rank-prefix: "&3&lRANG"
+	protection-prefix: "&4&lVÉDELEM"
+	cmdspy-prefix: "&2&lCMDSPY"
+	crash-prefix: "&9&lCRASH"
+	mute-prefix: "&6&lMUTE"
+	afk-prefix: "&5&lAFK"
+	helpop-prefix: "&e&lHELPOP"
+	world-prefix: "&7&lWORLD"
+
 function server_log(type: text, message: text):
 
 	if any:
@@ -15,8 +26,25 @@ function server_log(type: text, message: text):
 		set {_color} to colored {config::global::color::main}
 		replace every "ß" in {_message} with {_color}
 
-		set {_prefix} to {config::server::message::log::%{_type}%}
-		set {_final_msg} to "%{_prefix}% &r%colored {_message}%"
+		switch {_type}:
+			case "admin":
+				set {_prefix} to {@admin-prefix}
+			case "rank":
+				set {_prefix} to {@rank-prefix}
+			case "protection":
+				set {_prefix} to {@protection-prefix}
+			case "cmdspy":
+				set {_prefix} to {@cmdspy-prefix}
+			case "mute":
+				set {_prefix} to {@mute-prefix}
+			case "afk":
+				set {_prefix} to {@afk-prefix}
+			case "helpop":
+				set {_prefix} to {@helpop-prefix}
+			case "world":
+				set {_prefix} to {@world-prefix}
+
+		set {_final_msg} to "%{_prefix}% &8| &r%colored {_message}%"
 
 	add console to {_send_to::*}
 

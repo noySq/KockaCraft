@@ -1,3 +1,6 @@
+options:
+	cmdspy-format: "%display_name(player)% &8> /&2%{_command}%"
+
 on command:
 
 	# Ha nem Skript parancs (pl. login, register) akkor nem érdekes
@@ -13,7 +16,7 @@ on command:
 		
 		then:
 			set {_command} to full command
-			server_log("cmdspy", {config::protection::message::cmdspy::log})
+			server_log("cmdspy", {@cmdspy-format})
 
 # Kilépésnél kikapcsoljuk a CommandSpy-t
 on quit:

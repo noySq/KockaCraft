@@ -1,10 +1,14 @@
+options:
+	chat-log-format: "%{_p}%: %{_message}%"
+	command-log-format: "%{_p}%: /%{_command}%"
+
 # Létrehozzuk a sectiont, ami logolja majd a parancsokat és a chatet
 on load:
 	create new section with arguments variables {_p}, {_command} stored in {-section::log::cmd}:
-		log {config::protection::message::log::command-format} to "command.log"
+		log {@chat-log-format} to "command.log"
 		
 	create new section with arguments variables {_p}, {_message} stored in {-section::log::chat}:
-		log {config::protection::message::log::chat-format} to "chat.log"
+		log {@command-log-format} to "chat.log"
 
 # Parancs lefuttatásakor aszinkronikusan lefuttatjuk a sectiont
 on command:
