@@ -11,6 +11,7 @@ on join:
 	# Ez a saját Nametag rendszer miatt kell
 	# Egyéb más dolgokra is alkalmas lehet
 	add player to team named "global"
+	nametag_create_entity(player)
 
 	# Ha a játékos már játszott
 	if player has played before:
