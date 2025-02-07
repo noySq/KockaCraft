@@ -1,0 +1,18 @@
+options:
+	quit-message: "%display_name(player)% &clecsatlakozott!"
+
+on quit:
+
+	# Kikapcsoljuk a vanilla csatlakozási szöveget
+	set quit message to ""
+
+	send action bar server_feedback("casual", {@quit-message}, true) to all players
+
+
+# A Nametag és a Pet rendszer ezen az elven működik
+# ha a játékos lecsatlakozik, akkor beragadnak ezek az entitások
+# tehát, hogyha "leszállnak" a játékosról, akkor törölhetőek
+# Ez a leszállás csak a lecsatlakozáskor történik meg
+on dismount:
+	if vehicle of event-entity is not online:
+		delete event-entity
