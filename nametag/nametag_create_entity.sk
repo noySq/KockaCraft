@@ -1,0 +1,19 @@
+function nametag_create_entity(p: player):
+
+	# Létrehozzuk a Nametag entitást
+	spawn text display at {_p}:
+
+		set display text of entity to nametag_get_text({_p})
+		set display billboard of entity to center
+		set display text alignment of entity to center aligned
+		set display text shadowed of entity to true
+		set display view range of entity to 0.5
+		set display translation of entity to vector(0, 0.5, 0)
+
+		# Egyedi azonosító, hogy meg lehessen különböztetni
+		set {_nbt} to nbt compound of entity
+		set byte tag "custom;nametag" of {_nbt} to 0
+
+		# Valamiért csak ezzel lehet egyszerre több entitást
+		# a játékosra ültetni
+		{_p}.addPassenger(entity)

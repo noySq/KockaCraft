@@ -1,0 +1,19 @@
+function nametag_get_text(p: player) :: texts:
+
+	# Játékos rangja
+	set {_rank} to {rank::%uuid of {_p}%}
+
+	# Ha a játékos Admin, akkor legyen a szerver ikonja is benne
+	if {_p} is op:
+		set {_icon} to "%nl%"
+	else:
+		set {_icon} to ""
+
+	# Összerakjuk a felépítést
+	set {_text::1} to {_icon}
+	set {_text::2} to colored {ranks::%{_rank}%::prefix} ? "&f&lJÁTÉKOS"
+	set {_text::3} to "&7%{_p}%"
+	set {_text::4} to ""
+
+	# Visszaküldjük
+	return {_text::*}

@@ -1,0 +1,11 @@
+function nametag_refresh(p: player):
+
+	# Lekérdezzük a Nametag entitást
+	set {_nametag_entity} to nametag_get_entity({_p})
+
+	# Ha nincs, akkor stop
+	if {_nametag_entity} is not set:
+		stop
+
+	# Megváltoztatjuk a szövegét
+	set display text of {_nametag_entity} to nametag_get_text({_p})

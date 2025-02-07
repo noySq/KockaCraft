@@ -1,0 +1,11 @@
+function nametag_get_entity(p: player) :: entity:
+
+	# Lekérdezzük a játékoson ülő entitásokat
+	loop passengers of {_p}:
+
+		# Ha el van mentve az entitás NBT-jében a "nametag" adat
+		set {_nbt} to custom nbt compound of loop-entity
+		if byte tag "custom;nametag" of {_nbt} is set:
+
+			# Visszaküldjük
+			return loop-entity
