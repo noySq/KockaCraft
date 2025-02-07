@@ -14,5 +14,8 @@ on quit:
 # tehát, hogyha "leszállnak" a játékosról, akkor törölhetőek
 # Ez a leszállás csak a lecsatlakozáskor történik meg
 on dismount:
-	if vehicle of event-entity is not online:
+	broadcast "%vehicle of event-entity%"
+	wait 1 tick
+	if vehicle of event-entity is offline:
+		broadcast "offline"
 		delete event-entity
