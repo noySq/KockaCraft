@@ -7,6 +7,11 @@ on join:
 	# Kikapcsoljuk a vanilla csatlakozási szöveget
 	set join message to ""
 
+	# Hozzáadjuk a játékos a "global" team-hez
+	# Ez a saját Nametag rendszer miatt kell
+	# Egyéb más dolgokra is alkalmas lehet
+	add player to team named "global"
+
 	# Ha a játékos már játszott
 	if player has played before:
 		send action bar server_feedback("casual", {@join-message}, true) to all players
