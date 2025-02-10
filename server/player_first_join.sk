@@ -1,7 +1,7 @@
 options:
-	join-message: "%display_name(player)% &acsatlakozott!"
+	first-join-message: "%display_name(player)% ßelőször jár itt! &8[#%number of offline players%&8]"
 
-on join:
+on first join:
 
 	# Kikapcsoljuk a vanilla csatlakozási szöveget
 	set join message to ""
@@ -12,4 +12,4 @@ on join:
 	add player to team named "global"
 	nametag_create_entity(player)
 
-	send action bar server_feedback("casual", {@join-message}, true) to all players
+	send action bar server_feedback("casual", {@first-join-message}, true) to all players
