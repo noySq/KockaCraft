@@ -31,7 +31,7 @@ function pet_set_position(p: player):
 		# Ellenőrízzik, hogy megtelt-e a sor
 		# Ha megtelt, hozzáadunk egy új sort
 		if all:
-			mod( (loop-iteration - 1), {@max-pet-in-one-row} ) = 0
+			mod( loop-iteration - 1, {@max-pet-in-one-row} ) = 0
 			loop-iteration != 1
 		then:
 			add 1 to {_row}
@@ -42,14 +42,14 @@ function pet_set_position(p: player):
 		# Középre igazítás az X tengelyen
 		set {_total_row_width} to ( {_pets_in_current_row} - 1 ) * {_spacing_x}
 		set {_start_x} to (( {_total_row_width} / 2 ) * -1 )
-		set {_x_offset} to {_start_x} + ( mod(loop-iteration - 1, {@max-pet-in-one-row}) * {_spacing_x} ) 
+		set {_x_offset} to {_start_x} + ( mod( loop-iteration - 1, {@max-pet-in-one-row} ) * {_spacing_x} ) 
 		
 		# Ha új sor került létrehozása, akkor módosítjuk a Z tengelyt
 		if {_row} > {_row_before}:
 			set {_spacing_z} to {@distance-behind-player} + ( {_row} * {@distance-between-pet-rows} )
 
 		# Vektor beállítása
-		set {_v} to vector({_x_offset}, {@distance-between-ground}, {_spacing_z})
+		set {_v} to vector( {_x_offset}, {@distance-between-ground}, {_spacing_z} )
 
 		# Beállítjuk az entitás pozícióját
 		set display translation of loop-entity to {_v}
