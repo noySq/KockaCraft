@@ -1,0 +1,44 @@
+options:
+	price: "%{config::color::main}%&lÁr: %format_balance({_item::price})%"
+	seller: "%{config::color::main}%&lEladó: %display_name({_item::seller})%"
+	expiration: "%{config::color::main}%&lLejárat: &7%format_timespan({_time_remaining})%"
+	id: "&8&oID: %{_item::ID}%"
+
+	remove-item: "&cKattints a tárgy levételéhez"
+	purchase-item: "&aKattints a vásárláshoz"
+
+function shop_get_items(p: player, item: item) :: item:
+
+	# Lekérdezzük a tárgy egyedi NBT-jét
+	set {_nbt} to custom nbt compound of {_item}
+
+	# Lekérdezzük a Shop-pal kapcsolatos adatokat
+	set {_item::ID} to int tag "Shop;ID" of {_nbt}
+	set {_item::price} to float tag "Shop;Price" of {_nbt}
+	set {_item::seller} to (string tag "Shop;Seller" of {_nbt} parsed as offlineplayer)
+	set {_item::expiration} to unix date of int tag "Shop;Expiration" of {_nbt}
+
+	# Lejárati dátum kiszámolása
+	set {_time_remaining} to difference between now and {_item::expiration}
+
+	# Ellenőrizzük, hogy eladó = játékos, úgy alakítjuk a szöveget
+	if {_item::seller} = {_p}:
+		set {_item::footer} to {@remove-item}
+	else:
+		set {_item::footer} to {@purchase-item}
+
+	# A tárgy eredeti leírását hozzáadjuk
+	add lore of {_item} to lore of {_item}
+
+	# Shop specifikus leírás
+	add "" to lore of {_item}
+	add {@price} to lore of {_item}
+	add {@seller} to lore of {_item}
+	add {@expiration} to lore of {_item}
+	add "" to lore of {_item}
+	add {_item::footer} to lore of {_item}
+	add "" to lore of {_item}
+	add {@id} to lore of {_item}
+
+	# Visszaküldjük
+	return {_item}

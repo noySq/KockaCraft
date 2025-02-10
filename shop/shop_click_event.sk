@@ -1,11 +1,14 @@
 on rightclick on interaction:
 
+	# Megnézzük, hogy van-e elmentve egyedi NBT
 	set {_nbt} to compound tag "custom" of nbt compound of clicked entity
 	if {_nbt} is not set:
 		stop
 
+	# Megnézzük, hogy van-e elmentve bolt tulajdonos
 	set {_shop::owner} to (string tag "Shop;Owner" of {_nbt} parsed as offlineplayer)
 	if {_shop::owner} is not set:
 		stop
 
+	# Megnyitjuk a boltját
 	shop_gui(player, {_shop::owner}, 1)

@@ -1,5 +1,30 @@
+options:
+	shop-name: "%display_name({_owner})% &8boltja"
+	gui-size: 6
+
 function shop_gui(p: player, owner: offlineplayer, page: integer):
 
-	set {_gui} to chest inventory with 6 rows named "%display_name({_owner})% &8boltja"
+	# Létrehozunk egy GUI-t
+	set {_gui} to chest inventory with {@gui-size} rows named {@shop-name}
+	# Kiszámoljuk a maximum használható slotokat
+	set {_max_slot} to ( {@gui-size} * 9 )
 
+	# Végigmegyünk a játékos boltjának tárgyain
+	loop get_paginated_objects({_page}, {_max_slot}, reversed {shop::%uuid of {_owner}%::*}):
+
+		# Lekérdezzük az NBT-jét a tárgynak
+		set {_nbt} to custom nbt compound of loop-value
+
+		# Lekérdezzük a lejárati dátumot
+		set {_unix_expiration} to int tag "Shop;Expiration" of {_nbt}
+		# Mostani dátum Unix formátumban
+		set {_unix_now} to unix timestamp of now
+
+		# Ha a tárgy még nem járt le, folytatjuk
+		if {_unix_now} < {_unix_expiration}:
+
+			# Hozzáadjuk a tárgyat a GUI-ba
+			add shop_get_items({_p}, loop-value) to {_gui}
+
+	# Megnyitjuk a GUI-t
 	open {_gui} to {_p}
