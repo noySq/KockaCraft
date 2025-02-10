@@ -1,3 +1,7 @@
+options:
+	mute-expired: "&fA némításod ßfel lett oldva&f!"
+	can-write: "&fMost már újra írhatsz a chatre!"
+
 every 1 minute:
 
 	set {_now} to unix timestamp of now
@@ -11,6 +15,6 @@ every 1 minute:
 			if {_p} is online:
 
 				send "" to {_p}
-				send server_feedback("success", "&fA némításod ßfel lett oldva&f!") to {_p}
-				send server_feedback("success", "&fMost már újra írhatsz a chatre!") to {_p}
+				send server_feedback("success", {@mute-expired}) to {_p}
+				send server_feedback("success", {@can-write}) to {_p}
 				send "" to {_p}

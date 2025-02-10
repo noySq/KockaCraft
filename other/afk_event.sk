@@ -1,3 +1,13 @@
+options:
+
+	tablist-format: "%display_name({_p})% &8&l[AFK]"
+
+	player-afk: "ßAFK &fállapotba kerültél!"
+	player-back: "ßAFK &fállapot eltüntetve!"
+
+	player-afk-log: "%display_name({_p})% &7elment a géptől!"
+	player-back-log: "%display_name({_p})% &7visszatért!"
+
 import:
 	org.purpurmc.purpur.event.PlayerAFKEvent
 
@@ -8,14 +18,14 @@ on PlayerAFKEvent:
 
 	if event.isGoingAfk() = true:
 
-		set {_p}'s tablist name to "%display_name({_p})% &7&l[AFK]"
+		set {_p}'s tablist name to {@tablist-format}
 
-		send server_feedback("casual", "ßAFK &fállapotba kerültél!") to {_p}
-		server_log("afk", "%display_name({_p})% &7elment a géptől!")
+		send server_feedback("casual", {@player-afk}) to {_p}
+		server_log("afk", {@player-afk-log})
 
 	else if event.isGoingAfk() = false:
 
 		tablist_name({_p})
 
-		send server_feedback("casual", "ßAFK &fállapot eltüntetve!") to {_p}
-		server_log("afk", "%display_name({_p})% &7visszatért!")
+		send server_feedback("casual", {@player-back}) to {_p}
+		server_log("afk", {@player-back-log})
