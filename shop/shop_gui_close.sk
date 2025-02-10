@@ -1,0 +1,7 @@
+on inventory close:
+
+    # Itt kéne valami ellenőrzés, hogy csak akkor törölje
+    # ha a játékos egy Shop-ot zárt be
+
+    delete (metadata "current_shop_gui" of player)
+    delete (metadata "current_shop_page" of player)
