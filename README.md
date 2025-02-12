@@ -2,6 +2,7 @@
   <img width="256" height="256" src="kockacraft.png">
 
 Jelenlegi forráskódja a készülőben lévő szervernek.
+
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 
